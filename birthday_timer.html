@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Ashfaq 🎂</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0077b6;
+            --secondary: #00b4d8;
+            --accent: #90e0ef;
+            --card-bg: rgba(255, 255, 255, 0.93);
+            --text: #03045e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #caf0f8 0%, #90e0ef 50%, #48cae4 100%);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body.dark-mode {
+            background: #0d0f18 !important;
+            color: #fff;
+        }
+
+        .bg-icon {
+            position: fixed;
+            animation: floatUp 8s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.25;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) scale(0.8) rotate(0deg);
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* music button */
+        .music-btn {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            background: white;
+            border: 2px solid var(--secondary);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            z-index: 200;
+            transition: transform 0.2s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            background: var(--accent);
+        }
+
+        /* card */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 92%;
+            max-width: 520px;
+            min-height: 540px;
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border-radius: 30px;
+            padding: 38px 26px 32px;
+            box-shadow: 0 18px 40px rgba(0, 119, 182, 0.22);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dark-card {
+            background: rgba(18, 22, 40, 0.96) !important;
+            color: #caf0f8 !important;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        /* steps */
+        .step {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .step.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        h1,
+        h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            line-height: 1.15;
+        }
+
+        .dark-card h1,
+        .dark-card h2 {
+            color: #48cae4;
+        }
+
+        p {
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            line-height: 1.6;
+            color: #1d3557;
+        }
+
+        .dark-card p {
+            color: #caf0f8;
+        }
+
+        button.btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(0, 119, 182, 0.3);
+            transition: all 0.22s ease;
+            margin-top: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        button.btn:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 12px 28px rgba(0, 119, 182, 0.42);
+        }
+
+        button.btn:active {
+            transform: scale(0.97);
+        }
+
+        /* timer */
+        .timer-box {
+            background: rgba(202, 240, 248, 0.6);
+            border: 2px dashed var(--secondary);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 12px 0;
+            width: 100%;
+        }
+
+        .timer-title {
+            font-size: 0.82rem;
+            color: #555;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+        }
+
+        .timer-value {
+            font-family: 'Caveat', cursive;
+            font-size: 1.9rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* step 1 */
+        .avatar-wrap {
+            font-size: 4rem;
+            margin-bottom: 14px;
+            animation: bounce 2.2s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* balloons */
+        .balloon-area {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .balloon {
+            font-size: 3.2rem;
+            cursor: pointer;
+            animation: floatB 2.6s infinite ease-in-out alternate;
+        }
+
+        .balloon:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .balloon.popped {
+            transform: scale(0) !important;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        @keyframes floatB {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .secret-msg {
+            font-family: 'Caveat', cursive;
+            font-size: 1.55rem;
+            color: var(--primary);
+            margin: 14px 0;
+            display: none;
+            padding: 10px;
+            background: rgba(144, 224, 239, 0.25);
+            border-radius: 12px;
+        }
+
+        /* cake */
+        .cake {
+            font-size: 5rem;
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 14px;
+            display: inline-block;
+        }
+
+        .flame {
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem;
+            animation: flicker 0.4s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        /* icons row */
+        .bouquet-icons {
+            display: flex;
+            gap: 16px;
+            margin: 14px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tulip-btn {
+            background: #e0f7fa;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            width: 58px;
+            height: 58px;
+            font-size: 1.7rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .tulip-btn:hover {
+            transform: scale(1.12);
+            background: #b3ecf8;
+        }
+
+        .note-box {
+            min-height: 54px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.38rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            padding: 8px;
+        }
+
+        /* gallery */
+        .gallery-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .photo-card {
+            width: 250px;
+            background: #fff;
+            border-radius: 18px;
+            padding: 8px 8px 18px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
+            transform: rotate(-1.5deg);
+            transition: transform 0.3s;
+        }
+
+        .photo-card:hover {
+            transform: rotate(0deg) scale(1.03);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .photo-caption {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-top: 8px;
+        }
+
+        .gallery-nav {
+            display: flex;
+            gap: 14px;
+            margin: 14px 0;
+            align-items: center;
+        }
+
+        .nav-arrow {
+            background: #fff;
+            border: 2px solid var(--secondary);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .nav-arrow:hover {
+            background: var(--accent);
+        }
+
+        .photo-counter {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* letter */
+        .fairy-lights {
+            font-size: 1.8rem;
+            letter-spacing: 10px;
+            margin-bottom: 14px;
+            display: none;
+        }
+
+        .big-letter-box {
+            background: rgba(255, 255, 255, 0.98);
+            color: #03045e;
+            border: 2px dashed var(--secondary);
+            padding: 22px 18px;
+            border-radius: 20px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.35rem;
+            line-height: 1.6;
+            text-align: left;
+            display: none;
+            animation: fadeIn 0.7s ease;
+            margin-bottom: 14px;
+            max-height: 350px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            box-shadow: inset 0 2px 10px rgba(0, 119, 182, 0.08);
+        }
+
+        .lyric-line {
+            opacity: 0;
+            transform: translateY(12px) scale(0.96);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 10px;
+            display: none;
+            padding: 6px 12px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .lyric-line.revealed {
+            display: block;
+            opacity: 0.88;
+            transform: translateY(0) scale(1);
+            color: #03045e;
+        }
+
+        .lyric-line.active-singing {
+            opacity: 1 !important;
+            transform: translateY(0) scale(1.02) !important;
+            background: linear-gradient(90deg, rgba(202, 240, 248, 0.9), rgba(144, 224, 239, 0.4));
+            border-left: 4px solid var(--primary);
+            color: #0077b6;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(0, 119, 182, 0.18);
+            animation: pulseGlow 1.6s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 4px 10px rgba(0, 119, 182, 0.12);
+            }
+            100% {
+                box-shadow: 0 6px 18px rgba(0, 180, 216, 0.35);
+            }
+        }
+
+        /* gift */
+        .gift-box {
+            font-size: 5.5rem;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        /* Segmented Countdown Grid */
+        .countdown-grid {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        .countdown-unit {
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 6px 8px;
+            min-width: 58px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.1);
+        }
+
+        .countdown-num {
+            font-family: 'Caveat', cursive;
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .countdown-lbl {
+            font-size: 0.7rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 3px;
+            font-weight: 700;
+        }
+
+        /* Step 0 Music Player Card */
+        .countdown-player {
+            background: linear-gradient(135deg, rgba(202, 240, 248, 0.85), rgba(144, 224, 239, 0.45));
+            border: 2px solid var(--secondary);
+            border-radius: 18px;
+            padding: 12px 16px;
+            margin: 12px 0 4px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 16px rgba(0, 119, 182, 0.12);
+            text-align: left;
+        }
+
+        .player-disc {
+            font-size: 2.2rem;
+            display: inline-block;
+            transition: transform 0.3s;
+            line-height: 1;
+        }
+
+        .player-disc.spinning {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .player-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .player-song-title {
+            font-weight: 800;
+            font-size: 0.92rem;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .player-song-sub {
+            font-size: 0.8rem;
+            color: #0077b6;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .player-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+            transition: transform 0.2s, background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .player-btn:hover {
+            transform: scale(1.08);
+            background: var(--secondary);
+        }
+
+        /* Equalizer sound wave bars */
+        .equalizer {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 14px;
+        }
+
+        .eq-bar {
+            width: 3px;
+            background: #0077b6;
+            border-radius: 2px;
+            height: 4px;
+            transition: height 0.2s;
+        }
+
+        .equalizer.active .eq-bar:nth-child(1) {
+            animation: eqAnim 0.7s infinite alternate ease-in-out;
+        }
+
+        .equalizer.active .eq-bar:nth-child(2) {
+            animation: eqAnim 0.5s infinite alternate ease-in-out 0.2s;
+        }
+
+        .equalizer.active .eq-bar:nth-child(3) {
+            animation: eqAnim 0.8s infinite alternate ease-in-out 0.4s;
+        }
+
+        @keyframes eqAnim {
+            0% {
+                height: 4px;
+            }
+            100% {
+                height: 14px;
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.09);
+            }
+        }
+
+        /* Watermark */
+        .watermark {
+            margin-top: 20px;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: rgba(3, 4, 94, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            user-select: none;
+        }
+
+        .dark-card .watermark {
+            color: rgba(202, 240, 248, 0.4);
+        }
+
+        /* Floating Top Music Control Bar */
+        .top-music-bar {
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 2px solid var(--secondary);
+            padding: 4px 8px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.2);
+            backdrop-filter: blur(8px);
+        }
+
+        .music-mini-btn {
+            background: transparent;
+            border: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 50%;
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #03045e;
+        }
+
+        .music-mini-btn:hover {
+            transform: scale(1.15);
+            background: rgba(0, 180, 216, 0.15);
+        }
+
+        .music-mini-btn.play-btn {
+            font-size: 1.15rem;
+        }
+
+        /* Player Controls Group */
+        .player-controls-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .player-ctrl-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            border: 1.5px solid var(--secondary);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .player-ctrl-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .song-switcher-pills {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+
+        .song-pill {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1.5px solid var(--secondary);
+            color: var(--text);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .song-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 3px 10px rgba(0, 119, 182, 0.3);
+        }
+
+        .song-pill:hover:not(.active) {
+            background: rgba(202, 240, 248, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hidden SoundCloud Player -->
+    <iframe id="sc-iframe"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/official_ajay_vashisth/sumit-goswami-birthday-khatri-new-haryanvi-songs-haryanavi&auto_play=true&buying=false&liking=false&download=false&sharing=false&show_artwork=false&show_comments=false&show_playcount=false&show_user=false&hide_related=true&visual=false"
+        style="position:fixed; top:-200px; left:0; width:1px; height:1px; opacity:0; pointer-events:none; border:none;"
+        allow="autoplay" id="sc-widget">
+    </iframe>
+
+    <!-- Top Music Navigation Bar -->
+    <div class="top-music-bar">
+        <button class="music-mini-btn" onclick="prevSong()" title="Pichla Gana">⏮</button>
+        <button class="music-mini-btn play-btn" id="musicBtn" onclick="toggleMusic()" title="Play / Pause">🎵</button>
+        <button class="music-mini-btn" onclick="nextSong()" title="Agla Gana">⏭</button>
+    </div>
+
+    <div class="container" id="mainContainer">
+
+        <!-- STEP 0: Countdown -->
+        <div class="step active" id="step0">
+            <div class="avatar-wrap" style="font-size:3rem">⏳🎂</div>
+            <h2>Happy Birthday, Ashfaq!</h2>
+
+            <div class="timer-box">
+                <div class="timer-title">Brotherhood — time together</div>
+                <div class="timer-value" id="elapsed-time">…</div>
+            </div>
+
+            <div class="timer-box" id="countdown-container">
+                <div class="timer-title">Surprise unlocks in</div>
+                <div class="countdown-grid">
+                    <div class="countdown-unit">
+                        <div class="countdown-num" id="cd-days">0</div>
+                        <div class="countdown-lbl">Days</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-num" id="cd-hours">0</div>
+                        <div class="countdown-lbl">Hours</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-num" id="cd-mins">0</div>
+                        <div class="countdown-lbl">Mins</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-num" id="cd-secs">0</div>
+                        <div class="countdown-lbl">Secs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Birthday Player with Song Switcher -->
+            <div class="countdown-player" id="countdownPlayer">
+                <div class="player-disc" id="playerDisc">💿</div>
+                <div class="player-info">
+                    <div class="player-song-title" id="playerSongTitle">Sumit Goswami - Birthday 🎂</div>
+                    <div class="player-song-sub">
+                        <span id="playerStatusText">Haryanvi Birthday Vibe</span>
+                        <div class="equalizer" id="playerEqualizer">
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-controls-group">
+                    <button class="player-ctrl-btn" onclick="prevSong()" title="Pichla Gana">⏮</button>
+                    <button class="player-btn" id="playerPlayBtn" onclick="toggleMusic()" title="Play / Pause">▶</button>
+                    <button class="player-ctrl-btn" onclick="nextSong()" title="Agla Gana">⏭</button>
+                </div>
+            </div>
+
+            <!-- Song Switch Buttons -->
+            <div class="song-switcher-pills">
+                <button class="song-pill active" id="songPill0" onclick="switchSong(0)">🎂 Sumit Goswami - Birthday</button>
+                <button class="song-pill" id="songPill1" onclick="switchSong(1)">🔥 Talwiinder Remix</button>
+            </div>
+
+            <div id="unlock-container" style="margin-top:16px;">
+                <p id="unlockMsg" style="font-weight:700; color:var(--primary); margin-bottom:8px;">It's your special day, Ashfaq! 🎉</p>
+                <button class="btn pulse" id="btnOpenSurprise" onclick="openSurpriseNow()" style="width:100%; box-shadow:0 6px 20px rgba(0,119,182,0.35); font-size:1.05rem;">✨ Open Your Surprise ✨</button>
+            </div>
+        </div>
+
+        <!-- STEP 1: Welcome -->
+        <div class="step" id="step1">
+            <div class="avatar-wrap">🎉👊🚀</div>
+            <h1>Yaar, Happy Birthday!</h1>
+            <p>Ashfaq, tu sach mein ek alag cheez hai. Aaj tera din hai — aur main chahta hoon ke tu bas thodi der ke
+                liye apne aap ko celebrate kare.</p>
+            <button class="btn" onclick="nextStep(2)">Chalo shuru karte hain ✨</button>
+        </div>
+
+        <!-- STEP 2: Balloon Pop -->
+        <div class="step" id="step2">
+            <h2>Balloons phodo! 🎈</h2>
+            <p>Teeno balloons click karo — ek secret message milega.</p>
+            <div class="balloon-area">
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+            </div>
+            <div class="secret-msg" id="secretMsg">✨ "chlo abbahut pad liya ab wish mango " ✨</div>
+            <button class="btn" id="btnStep2" style="display:none;" onclick="playBirthdaySound(); nextStep(3)">Wish
+                maango 🎂</button>
+        </div>
+
+        <!-- STEP 3: Cake -->
+        <div class="step" id="step3">
+            <h2>Wish maango 🎂</h2>
+            <p>Aankhein band karo, dil se kuch maango — phir cake pe tap karo!</p>
+            <div class="cake" onclick="blowCandle()">
+                <span class="flame" id="flame">🔥</span>
+                🎂
+            </div>
+            <p id="wishStatus" style="font-weight:700; min-height:26px; color:var(--primary);"></p>
+            <button class="btn" id="btnStep3" style="display:none;" onclick="nextStep(4)">Teri khasiyatein 🌟</button>
+        </div>
+
+        <!-- STEP 4: Special notes -->
+        <div class="step" id="step4">
+            <h2>Jo cheez tujhe special banati hai 🌟</h2>
+            <p>Har icon tap karo:</p>
+            <div class="bouquet-icons">
+                <div class="tulip-btn" onclick="showNote(1)">😂</div>
+                <div class="tulip-btn" onclick="showNote(2)">💪</div>
+                <div class="tulip-btn" onclick="showNote(3)">🤝</div>
+                <div class="tulip-btn" onclick="showNote(4)">🔥</div>
+            </div>
+            <div class="note-box" id="noteDisplay">Koi bhi icon touch karo!</div>
+            <button class="btn" onclick="nextStep(5)">Yaadein dekho 📸</button>
+        </div>
+
+        <!-- STEP 5: Gallery -->
+        <div class="step" id="step5">
+            <h2>Hamare pal 📸</h2>
+            <p>Kuch lamhe jo hamesha yaad rahenge:</p>
+
+            <div class="gallery-container">
+                <div class="photo-card">
+                    <img id="galleryImg" src="Downloads/BLIP/1000262176.jpg" alt="Memory">
+                    <div class="photo-caption" id="galleryCaption">Yeh wala pal — ❤️</div>
+                </div>
+                <div class="gallery-nav">
+                    <button class="nav-arrow" onclick="prevPhoto()">❮</button>
+                    <span class="photo-counter" id="photoCounter">1 / 12</span>
+                    <button class="nav-arrow" onclick="nextPhoto()">❯</button>
+                </div>
+            </div>
+
+            <button class="btn" onclick="prepareLightStep()">Ek aur cheez 💡</button>
+        </div>
+
+        <!-- STEP 6: Letter -->
+        <div class="step" id="step6">
+            <h2 id="lightHeading">Kuch dil ki baat ✨</h2>
+            <p id="lightSubtitle">Roshni thodi kam karo, dil se padho…</p>
+            <div class="fairy-lights" id="fairyLights">💙 ✨ 💙 ✨ 💙</div>
+            <button class="btn" id="btnTurnOnLights" onclick="turnOnLights()">Padhna hai 💡</button>
+
+            <div class="big-letter-box" id="letterBox">
+                <!-- Lyrics will appear line by line as song plays and stay on screen -->
+            </div>
+
+            <button class="btn" id="btnStep6" style="display:none;" onclick="finishToGift()">Last wala surprise
+                🎁</button>
+        </div>
+
+        <!-- STEP 7: Gift -->
+        <div class="step" id="step7">
+            <h2>Ek last surprise! 🎁</h2>
+            <p>Box pe tap karo…</p>
+            <div class="gift-box" onclick="openGift()">🎁</div>
+
+            <div id="finalCelebration" style="display:none; margin-top:18px;">
+                <div style="font-size:3.5rem; margin-bottom:12px;">🎉🥳🎂</div>
+                <h2>Happy Birthday, Ashfaq bhai!</h2>
+                <p>Tujhe beshuma khushiyan milein, har sapna pura ho, aur zindagi teri sari umeedein se behtar nikle.
+                    Love you yaar!</p>
+                <button class="btn" onclick="triggerFireworks()">Aur fireworks! 🎊</button>
+            </div>
+        </div>
+
+        <!-- Watermark -->
+        <div class="watermark">⚡ DEVELOPED BY MAZSTYGAMER ⚡</div>
+
+    </div><!-- end .container -->
+
+    <script>
+        // ── TIMERS ──────────────────────────────────────────────
+        const startDate = new Date('2009-09-03T12:00:00');
+        const unlockDate = new Date('2026-09-03T00:00:00');
+
+        function updateTimers() {
+            const now = new Date();
+
+            // elapsed
+            const e = now - startDate;
+            if (e > 0) {
+                const d = Math.floor(e / 86400000);
+                const h = Math.floor((e % 86400000) / 3600000);
+                const m = Math.floor((e % 3600000) / 60000);
+                const s = Math.floor((e % 60000) / 1000);
+                document.getElementById('elapsed-time').textContent = `${d}d ${h}h ${m}m ${s}s`;
+            }
+
+            // countdown
+            const r = unlockDate - now;
+            if (r <= 0) {
+                document.getElementById('countdown-container').style.display = 'none';
+                document.getElementById('unlock-container').style.display = 'block';
+            } else {
+                const d = Math.floor(r / 86400000);
+                const h = Math.floor((r % 86400000) / 3600000);
+                const m = Math.floor((r % 3600000) / 60000);
+                const s = Math.floor((r % 60000) / 1000);
+                
+                const cdDays = document.getElementById('cd-days');
+                const cdHours = document.getElementById('cd-hours');
+                const cdMins = document.getElementById('cd-mins');
+                const cdSecs = document.getElementById('cd-secs');
+
+                if (cdDays) cdDays.textContent = d;
+                if (cdHours) cdHours.textContent = h;
+                if (cdMins) cdMins.textContent = m;
+                if (cdSecs) cdSecs.textContent = s;
+            }
+        }
+        setInterval(updateTimers, 1000);
+        updateTimers();
+
+        // ── FLOATING ICONS ──────────────────────────────────────
+        ['🎈', '🎉', '💙', '🚀', '🎁', '⭐', '🎊'].forEach((emoji, i) => {
+            for (let j = 0; j < 3; j++) {
+                const el = document.createElement('div');
+                el.className = 'bg-icon';
+                el.textContent = emoji;
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.fontSize = (14 + Math.random() * 18) + 'px';
+                el.style.animationDuration = (6 + Math.random() * 6) + 's';
+                el.style.animationDelay = (Math.random() * 8) + 's';
+                document.body.appendChild(el);
+            }
+        });
+
+        // ── SOUNDCLOUD PLAYLIST (SUMIT GOSWAMI + TALWIINDER) ─────
+        const playlist = [
+            {
+                title: "Sumit Goswami - Birthday 🎂",
+                sub: "Haryanvi Birthday Vibe",
+                url: "https://soundcloud.com/official_ajay_vashisth/sumit-goswami-birthday-khatri-new-haryanvi-songs-haryanavi"
+            },
+            {
+                title: "Talwiinder - Tera Mera Afsana (Remix) 🔥",
+                sub: "Talwiinder x Anuv Jain x Karan Aujla",
+                url: "https://soundcloud.com/user-241389379/tera-mera-afsana-remix-feat-talwiinder-anuv-jain-karan-aujla"
+            }
+        ];
+        let currentTrackIdx = 0;
+        let scReady = false;
+        let isPlaying = false;
+        let widget = null;
+
+        function initSC() {
+            if (typeof SC === 'undefined') return;
+            const iframe = document.getElementById('sc-iframe');
+            if (!iframe) return;
+            widget = SC.Widget(iframe);
+            widget.bind(SC.Widget.Events.READY, function () {
+                scReady = true;
+                widget.bind(SC.Widget.Events.PLAY, () => { isPlaying = true; updateMusicBtn(); });
+                widget.bind(SC.Widget.Events.PAUSE, () => { isPlaying = false; updateMusicBtn(); });
+                widget.bind(SC.Widget.Events.FINISH, () => { nextSong(); });
+
+                // Attempt autoplay on ready
+                widget.play();
+            });
+        }
+
+        function switchSong(idx) {
+            currentTrackIdx = (idx + playlist.length) % playlist.length;
+            updateTrackDisplay();
+            if (widget && scReady) {
+                widget.load(playlist[currentTrackIdx].url, {
+                    auto_play: true,
+                    callback: function () {
+                        widget.play();
+                    }
+                });
+            }
+        }
+
+        function nextSong() {
+            switchSong(currentTrackIdx + 1);
+        }
+
+        function prevSong() {
+            switchSong(currentTrackIdx - 1);
+        }
+
+        function updateTrackDisplay() {
+            const track = playlist[currentTrackIdx];
+            const titleEl = document.getElementById('playerSongTitle');
+            const subEl = document.getElementById('playerStatusText');
+            if (titleEl) titleEl.textContent = track.title;
+            if (subEl) subEl.textContent = track.sub;
+
+            playlist.forEach((_, i) => {
+                const pill = document.getElementById(`songPill${i}`);
+                if (pill) {
+                    if (i === currentTrackIdx) pill.classList.add('active');
+                    else pill.classList.remove('active');
+                }
+            });
+        }
+
+        function updateMusicBtn() {
+            const btn = document.getElementById('musicBtn');
+            const playBtn = document.getElementById('playerPlayBtn');
+            const disc = document.getElementById('playerDisc');
+            const eq = document.getElementById('playerEqualizer');
+
+            if (btn) {
+                btn.textContent = isPlaying ? '⏸' : '🎵';
+                btn.title = isPlaying ? 'Pause music' : 'Play music';
+                btn.style.color = isPlaying ? 'var(--primary)' : '#03045e';
+            }
+
+            if (playBtn) {
+                playBtn.textContent = isPlaying ? '⏸' : '▶';
+            }
+
+            if (disc) {
+                if (isPlaying) disc.classList.add('spinning');
+                else disc.classList.remove('spinning');
+            }
+
+            if (eq) {
+                if (isPlaying) eq.classList.add('active');
+                else eq.classList.remove('active');
+            }
+        }
+
+        function toggleMusic() {
+            if (!scReady) {
+                loadSCScript();
+                return;
+            }
+            if (isPlaying) {
+                widget.pause();
+            } else {
+                widget.play();
+            }
+        }
+
+        function loadSCScript() {
+            if (typeof SC !== 'undefined') {
+                initSC();
+            } else {
+                const s = document.createElement('script');
+                s.src = 'https://w.soundcloud.com/player/api.js';
+                s.onload = initSC;
+                document.head.appendChild(s);
+            }
+        }
+        window.addEventListener('load', loadSCScript);
+
+        // Auto-play on first click/touch anywhere in case browser blocks unprompted autoplay
+        function tryAutoplayOnInteraction() {
+            if (!isPlaying && widget && scReady) {
+                widget.play();
+            }
+        }
+        document.addEventListener('click', tryAutoplayOnInteraction, { once: true });
+        document.addEventListener('touchstart', tryAutoplayOnInteraction, { once: true });
+
+        // ── NAVIGATION ──────────────────────────────────────────
+        function openSurpriseNow() {
+            confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
+            nextStep(1);
+        }
+
+        function nextStep(n) {
+            forceStartMusic();
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + n).classList.add('active');
+        }
+
+        // ── BALLOON POP ─────────────────────────────────────────
+        let popped = 0;
+        function popBalloon(el) {
+            if (el.classList.contains('popped')) return;
+            el.classList.add('popped');
+            playFart();
+            popped++;
+            confetti({ particleCount: 30, spread: 65, origin: { y: 0.65 } });
+            if (popped === 3) {
+                document.getElementById('secretMsg').style.display = 'block';
+                document.getElementById('btnStep2').style.display = 'inline-block';
+            }
+        }
+
+        // ── CANDLE BLOW ─────────────────────────────────────────
+        function blowCandle() {
+            const flame = document.getElementById('flame');
+            if (flame.style.display === 'none') return;
+            flame.style.display = 'none';
+            document.getElementById('wishStatus').textContent = '✨ Wish pakka hoga — dilse mangoge toh!';
+            document.getElementById('btnStep3').style.display = 'inline-block';
+            confetti({ particleCount: 50, spread: 75, origin: { y: 0.65 } });
+        }
+
+        // ── NOTES ───────────────────────────────────────────────
+        const notes = {
+            1: "😂 Teri hassi — kamre mein aa jao toh sab ka mood ban jaata hai.",
+            2: "💪 Teri mehnat — jo target set karta hai, usse poora karta hai.",
+            3: "🤝 Sachchi dosti — sath hai toh mushkilein bhi aasan lagti hain.",
+            4: "🔥 Teri energy — yaar, tu kabhi thakta nahi lagta!"
+        };
+        function showNote(id) {
+            document.getElementById('noteDisplay').textContent = notes[id];
+        }
+
+        // ── BALLOON FART SOUND ───────────────────────────────────
+        const fartSound = new Audio('https://www.myinstants.com/media/sounds/dry-fart.mp3');
+        fartSound.volume = 0.9;
+        const birthdaysound = new Audio('https://www.myinstants.com/media/sounds/happy-birthday-truck-horn.mp3');
+        birthdaysound.volume = 1.0;
+
+        function playBirthdaySound() {
+            birthdaysound.currentTime = 0;
+            birthdaysound.play().catch(() => {
+                const fallbackAudio = new Audio('https://www.myinstants.com/en/instant/happy-birthday-truck-horn.mp3');
+                fallbackAudio.volume = 1.0;
+                fallbackAudio.play().catch(() => { });
+            });
+        }
+
+        function playFart() {
+            fartSound.currentTime = 0;
+            fartSound.play().catch(() => { });
+        }
+
+        // ── SOUND EFFECTS (MYINSTANTS) ──────────────────────────
+        const photoSwipeSound = new Audio('https://www.myinstants.com/media/sounds/faaah.mp3');
+        photoSwipeSound.volume = 0.85;
+
+        const fireworksSound = new Audio('https://www.myinstants.com/media/sounds/chiken-on-tree.mp3');
+        fireworksSound.volume = 1.0;
+
+        function playPhotoSound() {
+            photoSwipeSound.currentTime = 0;
+            photoSwipeSound.play().catch(() => { });
+        }
+        function playFireworksSound() {
+            fireworksSound.currentTime = 0;
+            fireworksSound.play().catch(() => { });
+        }
+
+        // ── GALLERY ─────────────────────────────────────────────
+        const photos = [
+            { url: "photos/1000262176.jpg", fallback: "Downloads/BLIP/1000262176.jpg", caption: "Yeh pal — ekdum ❤️" },
+            { url: "photos/1000262180.jpg", fallback: "Downloads/BLIP/1000262180.jpg", caption: "Har jagah tu alag hi lagta hai 😎" },
+            { url: "photos/1000262181.jpg", fallback: "Downloads/BLIP/1000262181.jpg", caption: "Yeh wali yaad kabhi nahi bhoolegi 🔥" },
+            { url: "photos/1000262182.jpg", fallback: "Downloads/BLIP/1000262182.jpg", caption: "Legendary scene tha yaar 🎉" },
+            { url: "photos/1000262183.jpg", fallback: "Downloads/BLIP/1000262183.jpg", caption: "wah kya pose hai very handsome boy 👕s✨" },
+            { url: "photos/1000262184.jpg", fallback: "Downloads/BLIP/1000262184.jpg", caption: "Zindagi mein aise pal chahiye 💙" },
+            { url: "photos/1000262373.jpg", fallback: "Downloads/BLIP/1000262373.jpg", caption: "Unstoppable tha tu iss din 🚀" },
+            { url: "photos/1000262374.jpg", fallback: "Downloads/BLIP/1000262374.jpg", caption: "Good vibes only 🌟" },
+            { url: "photos/1000262375.jpg", fallback: "Downloads/BLIP/1000262375.jpg", caption: "Yaadein bana raha hai tu 📸" },
+            { url: "photos/1000262376.jpg", fallback: "Downloads/BLIP/1000262376.jpg", caption: "Ekdum mast tha yeh 💥" },
+            { url: "photos/1000262377.jpg", fallback: "Downloads/BLIP/1000262377.jpg", caption: "Simply epic, yaar 🙌" },
+            { url: "photos/1000262378.jpg", fallback: "Downloads/BLIP/1000262378.jpg", caption: "Happy Birthday Ashfaq! 🎂" }
+        ];
+        let idx = 0;
+
+        function updateGallery() {
+            const img = document.getElementById('galleryImg');
+            img.onerror = function() {
+                if (photos[idx].fallback && img.src.indexOf(photos[idx].fallback) === -1) {
+                    img.src = photos[idx].fallback;
+                }
+            };
+            img.src = photos[idx].url;
+            document.getElementById('galleryCaption').textContent = photos[idx].caption;
+            document.getElementById('photoCounter').textContent = `${idx + 1} / ${photos.length}`;
+        }
+        function nextPhoto() { playPhotoSound(); idx = (idx + 1) % photos.length; updateGallery(); }
+        function prevPhoto() { playPhotoSound(); idx = (idx - 1 + photos.length) % photos.length; updateGallery(); }
+        updateGallery();
+
+        // ── TUM JIYO HAZAARON SAAL (BAAR BAAR DIN YE AAYE) ───────
+        const birthdaySpecialAudio = new Audio('https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/00/51/63/0051630f-0c67-02df-4a51-0e93ea55e922/mzaf_1906037364965549989.plus.aac.p.m4a');
+        birthdaySpecialAudio.volume = 1.0;
+
+        birthdaySpecialAudio.onended = function () {
+            if (widget && scReady) {
+                widget.setVolume(100);
+            }
+        };
+
+        const lyricsTimeline = [
+            { time: 0.0, text: "✨ <strong>Pyare Bhai Ashfaq,</strong>" },
+            { time: 1.0, text: "🎶 <strong>बार बार दिन ये आये, बार बार दिल ये गाये...</strong>" },
+            { time: 4.8, text: "🎂 <strong>तू जिये हज़ारों साल, ये मेरी है आरज़ू...</strong>" },
+            { time: 8.5, text: "💖 <strong>Happy Birthday to you! Happy Birthday to you!</strong>" },
+            { time: 12.0, text: "🎉 <strong>Happy Birthday to you, Ashfaq! Happy Birthday to you!</strong> 🎉" },
+            { time: 16.0, text: "🌟 बेक़रार होके दामन, थाम लूँ मैं किसका..." },
+            { time: 19.8, text: "🌹 झुक गया जहाँ भी सर, चूम लूँ मैं किसको..." },
+            { time: 23.5, text: "✨ सजके खुशियों की महफ़िल, हर दुआ है तेरे नाम..." },
+            { time: 27.2, text: "🎶 <strong>बार बार दिन ये आये, बार बार दिल ये गाये...</strong>" },
+            { time: 31.0, text: "🎂 <strong>तुम जियो हज़ारों साल, ये मेरी है आरज़ू!</strong>" },
+            { time: 34.5, text: "💫 <strong>साल के दिन हों पचास हज़ार...!</strong>" },
+            { time: 38.0, text: "🤲 <strong>Dua hai rab se tu hamesha khush rahe aur kamyabi tere kadam choome!</strong>" },
+            { time: 41.5, text: "💙 <em>Dil se bahut saare pyaar aur duao ke sath — tera bhai</em> 💙" }
+        ];
+
+        let lyricsInterval = null;
+
+        function startLyricsAnimation() {
+            const box = document.getElementById('letterBox');
+            box.innerHTML = '';
+            
+            lyricsTimeline.forEach((item, index) => {
+                const lineDiv = document.createElement('div');
+                lineDiv.id = `lyric-line-${index}`;
+                lineDiv.className = 'lyric-line';
+                lineDiv.innerHTML = item.text;
+                box.appendChild(lineDiv);
+            });
+
+            if (lyricsInterval) clearInterval(lyricsInterval);
+            const startTimestamp = Date.now();
+
+            lyricsInterval = setInterval(() => {
+                let curSec = (birthdaySpecialAudio && !birthdaySpecialAudio.paused) ? birthdaySpecialAudio.currentTime : ((Date.now() - startTimestamp) / 1000);
+                
+                let currentActiveIdx = -1;
+
+                lyricsTimeline.forEach((item, index) => {
+                    const el = document.getElementById(`lyric-line-${index}`);
+                    if (el && curSec >= item.time) {
+                        if (!el.classList.contains('revealed')) {
+                            el.classList.add('revealed');
+                            // Smooth scroll down to newest line
+                            box.scrollTop = box.scrollHeight;
+                        }
+                        currentActiveIdx = index;
+                    }
+                });
+
+                // Highlight the currently playing/singing line with karaoke glow
+                lyricsTimeline.forEach((_, index) => {
+                    const el = document.getElementById(`lyric-line-${index}`);
+                    if (el) {
+                        if (index === currentActiveIdx) {
+                            el.classList.add('active-singing');
+                        } else {
+                            el.classList.remove('active-singing');
+                        }
+                    }
+                });
+
+                // Show the next step button when reaches near the end
+                const lastLine = document.getElementById(`lyric-line-${lyricsTimeline.length - 1}`);
+                if (lastLine && lastLine.classList.contains('revealed')) {
+                    document.getElementById('btnStep6').style.display = 'inline-block';
+                }
+            }, 60);
+        }
+
+        // ── LIGHT UP ────────────────────────────────────────────
+        function prepareLightStep() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('mainContainer').classList.add('dark-card');
+            nextStep(6);
+        }
+        function turnOnLights() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('mainContainer').classList.remove('dark-card');
+            document.getElementById('fairyLights').style.display = 'block';
+            document.getElementById('btnTurnOnLights').style.display = 'none';
+            document.getElementById('lightSubtitle').style.display = 'none';
+            document.getElementById('letterBox').style.display = 'block';
+            document.getElementById('btnStep6').style.display = 'none';
+            confetti({ particleCount: 70, spread: 75, origin: { y: 0.5 } });
+
+            // Reduce background song volume to 35%
+            if (widget && scReady) {
+                widget.setVolume(35);
+            }
+
+            // Play Tum Jiyo Hazaaron Saal
+            birthdaySpecialAudio.currentTime = 0;
+            birthdaySpecialAudio.play().catch(() => { });
+
+            // Start line-by-line reveal animation without clearing previous lines
+            startLyricsAnimation();
+
+            // Safety timeout to ensure continue button shows
+            setTimeout(() => {
+                document.getElementById('btnStep6').style.display = 'inline-block';
+            }, 12000);
+        }
+        function finishToGift() {
+            if (lyricsInterval) clearInterval(lyricsInterval);
+            birthdaySpecialAudio.pause();
+            if (widget && scReady) {
+                widget.setVolume(100);
+            }
+            nextStep(7);
+        }
+
+        // ── FINALE ──────────────────────────────────────────────
+        function openGift() {
+            document.querySelector('.gift-box').style.display = 'none';
+            document.getElementById('finalCelebration').style.display = 'block';
+            triggerFireworks();
+        }
+        function triggerFireworks() {
+            playFireworksSound();
+            const end = Date.now() + 3500;
+            (function frame() {
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        }
+    </script>
+</body>
+
+</html>
