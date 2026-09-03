@@ -1147,27 +1147,32 @@
                 document.head.appendChild(s);
             }
         }
-        window.addEventListener('load', loadSCScript);
-
-        // Auto-play on first click/touch anywhere in case browser blocks unprompted autoplay
-        function tryAutoplayOnInteraction() {
-            if (!isPlaying && widget && scReady) {
-                widget.play();
-            }
+        function forceStartMusic() {
+            try {
+                if (widget && scReady) {
+                    widget.play();
+                }
+            } catch (e) { }
         }
-        document.addEventListener('click', tryAutoplayOnInteraction, { once: true });
-        document.addEventListener('touchstart', tryAutoplayOnInteraction, { once: true });
 
         // ── NAVIGATION ──────────────────────────────────────────
         function openSurpriseNow() {
-            confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
+            try {
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 80, spread: 85, origin: { y: 0.6 } });
+                }
+            } catch (e) { }
             nextStep(1);
         }
 
         function nextStep(n) {
             forceStartMusic();
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            document.getElementById('step' + n).classList.add('active');
+            const target = document.getElementById('step' + n);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
         // ── BALLOON POP ─────────────────────────────────────────
