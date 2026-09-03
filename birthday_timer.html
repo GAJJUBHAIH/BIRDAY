@@ -922,7 +922,7 @@
 
             <div class="gallery-container">
                 <div class="photo-card">
-                    <img id="galleryImg" src="Downloads/BLIP/1000262176.jpg" alt="Memory">
+                    <img id="galleryImg" src="https://iili.io/CyaWAxV.md.jpg" alt="Memory">
                     <div class="photo-caption" id="galleryCaption">Yeh wala pal — ❤️</div>
                 </div>
                 <div class="gallery-nav">
@@ -1246,30 +1246,31 @@
             fireworksSound.play().catch(() => { });
         }
 
-        // ── GALLERY ─────────────────────────────────────────────
+        // ── GALLERY (FAST CDN HOSTED) ───────────────────────────
         const photos = [
-            { url: "photos/1000262176.jpg", fallback: "Downloads/BLIP/1000262176.jpg", caption: "Yeh pal — ekdum ❤️" },
-            { url: "photos/1000262180.jpg", fallback: "Downloads/BLIP/1000262180.jpg", caption: "Har jagah tu alag hi lagta hai 😎" },
-            { url: "photos/1000262181.jpg", fallback: "Downloads/BLIP/1000262181.jpg", caption: "Yeh wali yaad kabhi nahi bhoolegi 🔥" },
-            { url: "photos/1000262182.jpg", fallback: "Downloads/BLIP/1000262182.jpg", caption: "Legendary scene tha yaar 🎉" },
-            { url: "photos/1000262183.jpg", fallback: "Downloads/BLIP/1000262183.jpg", caption: "wah kya pose hai very handsome boy 👕s✨" },
-            { url: "photos/1000262184.jpg", fallback: "Downloads/BLIP/1000262184.jpg", caption: "Zindagi mein aise pal chahiye 💙" },
-            { url: "photos/1000262373.jpg", fallback: "Downloads/BLIP/1000262373.jpg", caption: "Unstoppable tha tu iss din 🚀" },
-            { url: "photos/1000262374.jpg", fallback: "Downloads/BLIP/1000262374.jpg", caption: "Good vibes only 🌟" },
-            { url: "photos/1000262375.jpg", fallback: "Downloads/BLIP/1000262375.jpg", caption: "Yaadein bana raha hai tu 📸" },
-            { url: "photos/1000262376.jpg", fallback: "Downloads/BLIP/1000262376.jpg", caption: "Ekdum mast tha yeh 💥" },
-            { url: "photos/1000262377.jpg", fallback: "Downloads/BLIP/1000262377.jpg", caption: "Simply epic, yaar 🙌" },
-            { url: "photos/1000262378.jpg", fallback: "Downloads/BLIP/1000262378.jpg", caption: "Happy Birthday Ashfaq! 🎂" }
+            { url: "https://iili.io/CyaWAxV.md.jpg", caption: "Yeh pal — ekdum ❤️" },
+            { url: "https://iili.io/CyaWRWB.md.jpg", caption: "Har jagah tu alag hi lagta hai 😎" },
+            { url: "https://iili.io/CyaWGbR.md.jpg", caption: "Yeh wali yaad kabhi nahi bhoolegi 🔥" },
+            { url: "https://iili.io/CyaW8b4.md.jpg", caption: "Legendary scene tha yaar 🎉" },
+            { url: "https://iili.io/CyaW5iP.md.jpg", caption: "wah kya pose hai very handsome boy 👕s✨" },
+            { url: "https://iili.io/CyaWXsI.md.jpg", caption: "Zindagi mein aise pal chahiye 💙" },
+            { url: "https://iili.io/CyaW0Ja.md.jpg", caption: "Unstoppable tha tu iss din 🚀" },
+            { url: "https://iili.io/CyaWVxp.md.jpg", caption: "Good vibes only 🌟" },
+            { url: "https://iili.io/CyaWeJs.md.jpg", caption: "Yaadein bana raha hai tu 📸" },
+            { url: "https://iili.io/CyaWUzl.md.jpg", caption: "Ekdum mast tha yeh 💥" },
+            { url: "https://iili.io/CyaWvef.md.jpg", caption: "Simply epic, yaar 🙌" },
+            { url: "https://iili.io/CyaWgX2.md.jpg", caption: "Happy Birthday Ashfaq! 🎂" }
         ];
         let idx = 0;
 
+        // Preload all gallery images immediately for lightning-fast swiping
+        photos.forEach(p => {
+            const pre = new Image();
+            pre.src = p.url;
+        });
+
         function updateGallery() {
             const img = document.getElementById('galleryImg');
-            img.onerror = function() {
-                if (photos[idx].fallback && img.src.indexOf(photos[idx].fallback) === -1) {
-                    img.src = photos[idx].fallback;
-                }
-            };
             img.src = photos[idx].url;
             document.getElementById('galleryCaption').textContent = photos[idx].caption;
             document.getElementById('photoCounter').textContent = `${idx + 1} / ${photos.length}`;
