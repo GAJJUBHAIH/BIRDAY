@@ -556,23 +556,48 @@
             </aside>
             <main>
                 <h2>Recommended For You</h2>
-                <div class="video-grid">
-                    <div class="video-card">
-                        <div class="thumbnail"></div>
-                        <div class="video-info">Exclusive Studio Tour - 1080p</div>
-                    </div>
-                    <div class="video-card">
-                        <div class="thumbnail"></div>
-                        <div class="video-info">New Member Special - 4K</div>
-                    </div>
-                    <div class="video-card">
-                        <div class="thumbnail"></div>
-                        <div class="video-info">Behind the Scenes Footage</div>
-                    </div>
+                <div class="video-grid" id="decoy-videos">
+                    <!-- Real-looking videos will be generated here -->
                 </div>
             </main>
         </div>
     </div>
+    
+    <script>
+        // Generate lots of realistic looking video thumbnails for the decoy site
+        const decoyGrid = document.getElementById('decoy-videos');
+        const decoyTitles = [
+            "Exclusive Studio Tour - 1080p", "New Member Special - 4K", "Behind the Scenes Footage",
+            "Late Night Session - Full HD", "Private Collection Vol. 3", "Amateur Casting - Uncut",
+            "Summer Party Aftermath", "VIP Access Only - Premium", "College Dorm Secrets",
+            "Fitness Instructor Special", "Hotel Room Service", "Massage Therapy Gone Wild"
+        ];
+        
+        // Use a mix of fitness/model/silhouette unsplash images to look convincing but stay safe
+        const unsplashIds = [
+            "mEZ3PoFGs_k", "8Rtz3Tz7Lbw", "1-w9E_eZfHU", "_SrdSObC4X8", 
+            "Gz9O1y2q79M", "vV7k_r7YqYc", "N_cO05sXw8M", "8Rtz3Tz7Lbw",
+            "8hV41bE4Fw0", "Jv5R3y6kZfw", "b4p1M4Ttwq0", "fK3J_5o_BqE"
+        ];
+        
+        let decoyHTML = '';
+        for(let i=0; i<12; i++) {
+            const time = Math.floor(Math.random() * 15 + 5) + ":" + Math.floor(Math.random() * 50 + 10);
+            const views = Math.floor(Math.random() * 900 + 100) + "K views";
+            
+            decoyHTML += `
+            <div class="video-card" style="cursor:pointer;" onclick="alert('Premium Account Required!')">
+                <div class="thumbnail" style="position:relative; background:url('https://picsum.photos/seed/vid${i+10}/400/225') center/cover;">
+                    <span style="position:absolute; bottom:5px; right:5px; background:rgba(0,0,0,0.8); color:white; padding:2px 5px; font-size:12px; border-radius:3px;">${time}</span>
+                </div>
+                <div class="video-info" style="padding:10px;">
+                    <div style="font-weight:bold; color:#ddd; margin-bottom:5px;">${decoyTitles[i]}</div>
+                    <div style="color:#888; font-size:12px;">PremiumHub • ${views}</div>
+                </div>
+            </div>`;
+        }
+        decoyGrid.innerHTML = decoyHTML;
+    </script>
 
     <!-- 3. THE REAL SECRET: VALENTINE'S FRAME -->
     <div id="valentinePortal">
