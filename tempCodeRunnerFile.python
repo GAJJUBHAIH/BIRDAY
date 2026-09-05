@@ -1,0 +1,72 @@
+import pyautogui
+import pyperclip
+import time
+import random
+from datetime import datetime, timedelta
+
+# Ye rha aapka wahi classic final birthday paragraph
+final_wish = """Happiest birthday... 😭🎀
+
+Happy Birthday to someone truly special! 🎂
+
+You are Sweet Soul, Super Loyal, My Rock, and I'm so grateful to have you in my life.
+
+You bring so much warmth and sweetness into my life. Every moment with you is precious.
+
+On your special day, I wish you all the happiness, love, and joy that you deserve. May this year bring you countless beautiful moments and wonderful memories.
+
+Here's to celebrating you today and always! 🎉
+
+With love and best wishes,"""
+
+print("🚨 You have 10 seconds to click inside the Instagram message box...")
+time.sleep(10)
+
+# 1:00 AM tak chalane ke liye loop
+while True:
+    now = datetime.now()
+    
+    # Target set kiya hai raat ke 1:00 AM ka
+    target_time = now.replace(hour=1, minute=0, second=0, microsecond=0)
+    
+    # Agar 1 AM nikal chuka hai, toh agle din ka 1 AM target hoga
+    if now >= target_time:
+        target_time = target_time + timedelta(days=1)
+        
+    time_left = target_time - now
+    seconds_left = int(time_left.total_seconds())
+    
+    # Jab 1 baj jaye toh loop khatam
+    if seconds_left <= 0:
+        break
+
+    # Countdown messages with original emojis
+    if seconds_left > 1500:
+        msg = f"Finally {seconds_left} seconds left.. 💅✨"
+    elif seconds_left > 900:
+        msg = f"specially day finally {seconds_left} seconds left.. 💎💖🎀"
+    else:
+        msg = f"specially day finally {seconds_left} seconds left.. 🧸🌟❤️"
+        
+    pyperclip.copy(msg)
+    pyautogui.hotkey('ctrl', 'v') 
+    time.sleep(0.3)
+    pyautogui.press('enter')
+    
+    print(f"Sent: {msg} | Time left for 1 AM: {seconds_left}s")
+    
+    # Safe random delays (5, 10, 15, or 20 seconds) to prevent Instagram block
+    safe_delays = [5, 10, 15, 20]
+    chosen_delay = random.choice(safe_delays)
+    
+    sleep_duration = min(chosen_delay, seconds_left)
+    time.sleep(sleep_duration)
+
+# Thik raat ke 1:00 baje final wish bhejega
+time.sleep(1)
+pyperclip.copy(final_wish)
+pyautogui.hotkey('ctrl', 'v')
+time.sleep(0.5)
+pyautogui.press('enter')
+
+print("✅ 1200 abj gye sone ja rha hu good nighgt")
