@@ -604,7 +604,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        const THE_SECRET_CODE = "5778"; // Matches your September 3rd countdown!
+        const THE_SECRET_CODE = "5556"; // Updated secret code
 
         const ageGate = document.getElementById('ageGate');
         const adultPortal = document.getElementById('adultPortal');
@@ -620,14 +620,26 @@
         function playSiren() {
             if (!sirenPlayed && ageGate.style.display !== 'none') {
                 sirenAudio.volume = 0.6;
-                sirenAudio.play().catch(e => console.log('Autoplay blocked'));
-                sirenPlayed = true;
+                let playPromise = sirenAudio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => { sirenPlayed = true; }).catch(e => console.log('Autoplay blocked'));
+                }
             }
         }
-        document.body.addEventListener('click', playSiren, { once: true });
-        document.body.addEventListener('touchstart', playSiren, { once: true });
-        document.body.addEventListener('keydown', playSiren, { once: true });
-        // Attempt to play immediately (may fail)
+        
+        // Attach to multiple window events to ensure it catches any user interaction
+        ['click', 'touchstart', 'keydown', 'mousemove', 'pointerdown'].forEach(evt => {
+            window.addEventListener(evt, playSiren, { once: true });
+        });
+        
+        // Also attach specifically to the input field
+        const secretInput = document.getElementById('secretCode');
+        if (secretInput) {
+            secretInput.addEventListener('focus', playSiren, { once: true });
+            secretInput.addEventListener('input', playSiren, { once: true });
+        }
+
+        // Attempt to play immediately (may fail without interaction)
         setTimeout(playSiren, 500);
 
         document.getElementById('enterBtn').addEventListener('click', () => {
