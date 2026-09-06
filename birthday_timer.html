@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Birthday Ashfaq ðŸŽ‚</title>
+    <title>Happy Birthday Ashfaq 🎂</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap"
@@ -30,17 +30,14 @@
             -webkit-user-drag: none;
         }
 
-        /* Anti-screenshot: block image dragging & saving */
         img {
             pointer-events: none;
             -webkit-user-drag: none;
             -khtml-user-drag: none;
             -moz-user-drag: none;
             -o-user-drag: none;
-            user-drag: none;
         }
 
-        /* DRM overlay when page loses focus (screenshot attempt detected) */
         #drm-shield {
             display: none;
             position: fixed;
@@ -815,13 +812,7 @@
 
 <body>
 
-    <!-- ðŸ›¡ï¸ DRM SHIELD OVERLAY (shown on screenshot/screen capture attempt) -->
-    <div id="drm-shield">
-        <div>
-            ðŸš« SCREENSHOT BLOCKED ðŸš«<br>
-            <span style="font-size:1rem;color:#aaa;">This content is protected</span>
-        </div>
-    </div>
+    <div id="drm-shield"><div>SCREENSHOT BLOCKED<br><span style="font-size:1rem;color:#aaa;">Content Protected</span></div></div>
 
     <!-- Hidden SoundCloud Player -->
     <iframe id="sc-iframe"
@@ -832,21 +823,21 @@
 
     <!-- Top Music Navigation Bar -->
     <div class="top-music-bar">
-        <button class="music-mini-btn" onclick="prevSong()" title="Pichla Gana">â®</button>
-        <button class="music-mini-btn play-btn" id="musicBtn" onclick="toggleMusic()" title="Play / Pause">ðŸŽµ</button>
-        <button class="music-mini-btn" onclick="nextSong()" title="Agla Gana">â­</button>
+        <button class="music-mini-btn" onclick="prevSong()" title="Pichla Gana">⏮</button>
+        <button class="music-mini-btn play-btn" id="musicBtn" onclick="toggleMusic()" title="Play / Pause">🎵</button>
+        <button class="music-mini-btn" onclick="nextSong()" title="Agla Gana">⏭</button>
     </div>
 
     <div class="container" id="mainContainer">
 
         <!-- STEP 0: Countdown -->
         <div class="step active" id="step0">
-            <div class="avatar-wrap" style="font-size:3rem">â³ðŸŽ‚</div>
+            <div class="avatar-wrap" style="font-size:3rem">⏳🎂</div>
             <h2>Happy Birthday, Ashfaq!</h2>
 
             <div class="timer-box">
-                <div class="timer-title">Brotherhood â€” time together</div>
-                <div class="timer-value" id="elapsed-time">â€¦</div>
+                <div class="timer-title">Brotherhood — time together</div>
+                <div class="timer-value" id="elapsed-time">…</div>
             </div>
 
             <div class="timer-box" id="countdown-container">
@@ -873,9 +864,9 @@
 
             <!-- Mini Birthday Player with Song Switcher -->
             <div class="countdown-player" id="countdownPlayer">
-                <div class="player-disc" id="playerDisc">ðŸ’¿</div>
+                <div class="player-disc" id="playerDisc">💿</div>
                 <div class="player-info">
-                    <div class="player-song-title" id="playerSongTitle">Sumit Goswami - Birthday ðŸŽ‚</div>
+                    <div class="player-song-title" id="playerSongTitle">Sumit Goswami - Birthday 🎂</div>
                     <div class="player-song-sub">
                         <span id="playerStatusText">Haryanvi Birthday Vibe</span>
                         <div class="equalizer" id="playerEqualizer">
@@ -886,134 +877,134 @@
                     </div>
                 </div>
                 <div class="player-controls-group">
-                    <button class="player-ctrl-btn" onclick="prevSong()" title="Pichla Gana">â®</button>
-                    <button class="player-btn" id="playerPlayBtn" onclick="toggleMusic()" title="Play / Pause">â–¶</button>
-                    <button class="player-ctrl-btn" onclick="nextSong()" title="Agla Gana">â­</button>
+                    <button class="player-ctrl-btn" onclick="prevSong()" title="Pichla Gana">⏮</button>
+                    <button class="player-btn" id="playerPlayBtn" onclick="toggleMusic()" title="Play / Pause">▶</button>
+                    <button class="player-ctrl-btn" onclick="nextSong()" title="Agla Gana">⏭</button>
                 </div>
             </div>
 
             <!-- Song Switch Buttons -->
             <div class="song-switcher-pills">
-                <button class="song-pill active" id="songPill0" onclick="switchSong(0)">ðŸŽ‚ Sumit Goswami - Birthday</button>
-                <button class="song-pill" id="songPill1" onclick="switchSong(1)">ðŸ”¥ Talwiinder Remix</button>
+                <button class="song-pill active" id="songPill0" onclick="switchSong(0)">🎂 Sumit Goswami - Birthday</button>
+                <button class="song-pill" id="songPill1" onclick="switchSong(1)">🔥 Talwiinder Remix</button>
             </div>
 
             <!-- UNLOCK CONTAINER: Hidden until countdown finishes -->
             <div id="unlock-container" style="display:none; margin-top:16px;">
-                <p id="unlockMsg" style="font-weight:700; color:var(--primary); margin-bottom:8px;">It's your special day, Ashfaq! ðŸŽ‰</p>
-                <button class="btn pulse" id="btnOpenSurprise" onclick="openSurpriseNow()" style="width:100%; box-shadow:0 6px 20px rgba(0,119,182,0.35); font-size:1.05rem;">âœ¨ Open Your Surprise âœ¨</button>
+                <p id="unlockMsg" style="font-weight:700; color:var(--primary); margin-bottom:8px;">It's your special day, Ashfaq! 🎉</p>
+                <button class="btn pulse" id="btnOpenSurprise" onclick="openSurpriseNow()" style="width:100%; box-shadow:0 6px 20px rgba(0,119,182,0.35); font-size:1.05rem;">✨ Open Your Surprise ✨</button>
             </div>
         </div>
 
         <!-- STEP 1: Welcome -->
         <div class="step" id="step1">
-            <div class="avatar-wrap">ðŸŽ‰ðŸ‘ŠðŸš€</div>
+            <div class="avatar-wrap">🎉👊🚀</div>
             <h1>Yaar, Happy Birthday!</h1>
-            <p>Ashfaq, tu sach mein ek alag cheez hai. Aaj tera din hai â€” aur main chahta hoon ke tu bas thodi der ke
+            <p>Ashfaq, tu sach mein ek alag cheez hai. Aaj tera din hai — aur main chahta hoon ke tu bas thodi der ke
                 liye apne aap ko celebrate kare.</p>
-            <button class="btn" onclick="nextStep(2)">Chalo shuru karte hain âœ¨</button>
+            <button class="btn" onclick="nextStep(2)">Chalo shuru karte hain ✨</button>
         </div>
 
         <!-- STEP 2: Balloon Pop -->
         <div class="step" id="step2">
-            <h2>Balloons phodo! ðŸŽˆ</h2>
-            <p>Teeno balloons click karo â€” ek secret message milega.</p>
+            <h2>Balloons phodo! 🎈</h2>
+            <p>Teeno balloons click karo — ek secret message milega.</p>
             <div class="balloon-area">
-                <div class="balloon" onclick="popBalloon(this)">ðŸŽˆ</div>
-                <div class="balloon" onclick="popBalloon(this)">ðŸŽˆ</div>
-                <div class="balloon" onclick="popBalloon(this)">ðŸŽˆ</div>
-                <div class="balloon" onclick="popBalloon(this)">ðŸŽˆ</div>
-                <div class="balloon" onclick="popBalloon(this)">ðŸŽˆ</div>
-                <div class="balloon" onclick="popBalloon(this)">ðŸŽˆ</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
+                <div class="balloon" onclick="popBalloon(this)">🎈</div>
             </div>
-            <div class="secret-msg" id="secretMsg">âœ¨ "chlo abbahut pad liya ab wish mango " âœ¨</div>
+            <div class="secret-msg" id="secretMsg">✨ "chlo abbahut pad liya ab wish mango " ✨</div>
             <button class="btn" id="btnStep2" style="display:none;" onclick="playBirthdaySound(); nextStep(3)">Wish
-                maango ðŸŽ‚</button>
+                maango 🎂</button>
         </div>
 
         <!-- STEP 3: Cake -->
         <div class="step" id="step3">
-            <h2>Wish maango ðŸŽ‚</h2>
-            <p>Aankhein band karo, dil se kuch maango â€” phir cake pe tap karo!</p>
+            <h2>Wish maango 🎂</h2>
+            <p>Aankhein band karo, dil se kuch maango — phir cake pe tap karo!</p>
             <div class="cake" onclick="blowCandle()">
-                <span class="flame" id="flame">ðŸ”¥</span>
-                ðŸŽ‚
+                <span class="flame" id="flame">🔥</span>
+                🎂
             </div>
             <p id="wishStatus" style="font-weight:700; min-height:26px; color:var(--primary);"></p>
-            <button class="btn" id="btnStep3" style="display:none;" onclick="nextStep(4)">Teri khasiyatein ðŸŒŸ</button>
+            <button class="btn" id="btnStep3" style="display:none;" onclick="nextStep(4)">Teri khasiyatein 🌟</button>
         </div>
 
         <!-- STEP 4: Special notes -->
         <div class="step" id="step4">
-            <h2>Jo cheez tujhe special banati hai ðŸŒŸ</h2>
+            <h2>Jo cheez tujhe special banati hai 🌟</h2>
             <p>Har icon tap karo:</p>
             <div class="bouquet-icons">
-                <div class="tulip-btn" onclick="showNote(1)">ðŸ˜‚</div>
-                <div class="tulip-btn" onclick="showNote(2)">ðŸ’ª</div>
-                <div class="tulip-btn" onclick="showNote(3)">ðŸ¤</div>
-                <div class="tulip-btn" onclick="showNote(4)">ðŸ”¥</div>
+                <div class="tulip-btn" onclick="showNote(1)">😂</div>
+                <div class="tulip-btn" onclick="showNote(2)">💪</div>
+                <div class="tulip-btn" onclick="showNote(3)">🤝</div>
+                <div class="tulip-btn" onclick="showNote(4)">🔥</div>
             </div>
             <div class="note-box" id="noteDisplay">Koi bhi icon touch karo!</div>
-            <button class="btn" onclick="nextStep(5)">Yaadein dekho ðŸ“¸</button>
+            <button class="btn" onclick="nextStep(5)">Yaadein dekho 📸</button>
         </div>
 
         <!-- STEP 5: Gallery -->
         <div class="step" id="step5">
-            <h2>Hamare pal ðŸ“¸</h2>
+            <h2>Hamare pal 📸</h2>
             <p>Kuch lamhe jo hamesha yaad rahenge:</p>
 
             <div class="gallery-container">
                 <div class="photo-card">
                     <img id="galleryImg" src="photos/1000262176.jpg" onerror="this.src='https://iili.io/CyaWAxV.md.jpg'" alt="Memory">
-                    <div class="photo-caption" id="galleryCaption">Yeh wala pal â€” â¤ï¸</div>
+                    <div class="photo-caption" id="galleryCaption">Yeh wala pal — ❤️</div>
                 </div>
                 <div class="gallery-nav">
-                    <button class="nav-arrow" onclick="prevPhoto()">â®</button>
+                    <button class="nav-arrow" onclick="prevPhoto()">❮</button>
                     <span class="photo-counter" id="photoCounter">1 / 12</span>
-                    <button class="nav-arrow" onclick="nextPhoto()">â¯</button>
+                    <button class="nav-arrow" onclick="nextPhoto()">❯</button>
                 </div>
             </div>
 
-            <button class="btn" onclick="prepareLightStep()">Ek aur cheez ðŸ’¡</button>
+            <button class="btn" onclick="prepareLightStep()">Ek aur cheez 💡</button>
         </div>
 
         <!-- STEP 6: Letter -->
         <div class="step" id="step6">
-            <h2 id="lightHeading">Kuch dil ki baat âœ¨</h2>
-            <p id="lightSubtitle">Roshni thodi kam karo, dil se padhoâ€¦</p>
-            <div class="fairy-lights" id="fairyLights">ðŸ’™ âœ¨ ðŸ’™ âœ¨ ðŸ’™</div>
-            <button class="btn" id="btnTurnOnLights" onclick="turnOnLights()">Padhna hai ðŸ’¡</button>
+            <h2 id="lightHeading">Kuch dil ki baat ✨</h2>
+            <p id="lightSubtitle">Roshni thodi kam karo, dil se padho…</p>
+            <div class="fairy-lights" id="fairyLights">💙 ✨ 💙 ✨ 💙</div>
+            <button class="btn" id="btnTurnOnLights" onclick="turnOnLights()">Padhna hai 💡</button>
 
             <div class="big-letter-box" id="letterBox">
                 <!-- Lyrics will appear line by line as song plays and stay on screen -->
             </div>
 
             <button class="btn" id="btnStep6" style="display:none;" onclick="finishToGift()">Last wala surprise
-                ðŸŽ</button>
+                🎁</button>
         </div>
 
         <!-- STEP 7: Gift -->
         <div class="step" id="step7">
-            <h2>Ek last surprise! ðŸŽ</h2>
-            <p>Box pe tap karoâ€¦</p>
-            <div class="gift-box" onclick="openGift()">ðŸŽ</div>
+            <h2>Ek last surprise! 🎁</h2>
+            <p>Box pe tap karo…</p>
+            <div class="gift-box" onclick="openGift()">🎁</div>
 
             <div id="finalCelebration" style="display:none; margin-top:18px;">
-                <div style="font-size:3.5rem; margin-bottom:12px;">ðŸŽ‰ðŸ¥³ðŸŽ‚</div>
+                <div style="font-size:3.5rem; margin-bottom:12px;">🎉🥳🎂</div>
                 <h2>Happy Birthday, Ashfaq bhai!</h2>
                 <p>Tujhe beshuma khushiyan milein, har sapna pura ho, aur zindagi teri sari umeedein se behtar nikle.
                     Love you yaar!</p>
-                <button class="btn" onclick="triggerFireworks()">Aur fireworks! ðŸŽŠ</button>
+                <button class="btn" onclick="triggerFireworks()">Aur fireworks! 🎊</button>
             </div>
         </div>
 
         <!-- Watermark -->
-        <div class="watermark">âš¡ DEVELOPED BY MAZSTYGAMER âš¡</div>
+        <div class="watermark">⚡ DEVELOPED BY MAZSTYGAMER ⚡</div>
 
     </div><!-- end .container -->
 
     <script>
-        // â”€â”€ TIMERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── TIMERS ──────────────────────────────────────────────
         const startDate = new Date('2009-09-03T12:00:00');
         const unlockDate = new Date('2026-09-03T00:00:00');
 
@@ -1061,8 +1052,8 @@
         setInterval(updateTimers, 1000);
         updateTimers();
 
-        // â”€â”€ FLOATING ICONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        ['ðŸŽˆ', 'ðŸŽ‰', 'ðŸ’™', 'ðŸš€', 'ðŸŽ', 'â­', 'ðŸŽŠ'].forEach((emoji, i) => {
+        // ── FLOATING ICONS ──────────────────────────────────────
+        ['🎈', '🎉', '💙', '🚀', '🎁', '⭐', '🎊'].forEach((emoji, i) => {
             for (let j = 0; j < 3; j++) {
                 const el = document.createElement('div');
                 el.className = 'bg-icon';
@@ -1075,15 +1066,15 @@
             }
         });
 
-        // â”€â”€ SOUNDCLOUD PLAYLIST (SUMIT GOSWAMI + TALWIINDER) â”€â”€â”€â”€â”€
+        // ── SOUNDCLOUD PLAYLIST (SUMIT GOSWAMI + TALWIINDER) ─────
         const playlist = [
             {
-                title: "Sumit Goswami - Birthday ðŸŽ‚",
+                title: "Sumit Goswami - Birthday 🎂",
                 sub: "Haryanvi Birthday Vibe",
                 url: "https://soundcloud.com/official_ajay_vashisth/sumit-goswami-birthday-khatri-new-haryanvi-songs-haryanavi"
             },
             {
-                title: "Talwiinder - Tera Mera Afsana (Remix) ðŸ”¥",
+                title: "Talwiinder - Tera Mera Afsana (Remix) 🔥",
                 sub: "Talwiinder x Anuv Jain x Karan Aujla",
                 url: "https://soundcloud.com/user-241389379/tera-mera-afsana-remix-feat-talwiinder-anuv-jain-karan-aujla"
             }
@@ -1154,13 +1145,13 @@
             const eq = document.getElementById('playerEqualizer');
 
             if (btn) {
-                btn.textContent = isPlaying ? 'â¸' : 'ðŸŽµ';
+                btn.textContent = isPlaying ? '⏸' : '🎵';
                 btn.title = isPlaying ? 'Pause music' : 'Play music';
                 btn.style.color = isPlaying ? 'var(--primary)' : '#03045e';
             }
 
             if (playBtn) {
-                playBtn.textContent = isPlaying ? 'â¸' : 'â–¶';
+                playBtn.textContent = isPlaying ? '⏸' : '▶';
             }
 
             if (disc) {
@@ -1220,7 +1211,7 @@
             window.addEventListener(evt, triggerImmediatePlay, { passive: true });
         });
 
-        // â”€â”€ NAVIGATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── NAVIGATION ──────────────────────────────────────────
         function openSurpriseNow() {
             try {
                 if (typeof confetti === 'function') {
@@ -1240,7 +1231,7 @@
             }
         }
 
-        // â”€â”€ BALLOON POP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── BALLOON POP ─────────────────────────────────────────
         let popped = 0;
         function popBalloon(el) {
             if (el.classList.contains('popped')) return;
@@ -1254,28 +1245,28 @@
             }
         }
 
-        // â”€â”€ CANDLE BLOW â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── CANDLE BLOW ─────────────────────────────────────────
         function blowCandle() {
             const flame = document.getElementById('flame');
             if (flame.style.display === 'none') return;
             flame.style.display = 'none';
-            document.getElementById('wishStatus').textContent = 'âœ¨ Wish pakka hoga â€” dilse mangoge toh!';
+            document.getElementById('wishStatus').textContent = '✨ Wish pakka hoga — dilse mangoge toh!';
             document.getElementById('btnStep3').style.display = 'inline-block';
             confetti({ particleCount: 50, spread: 75, origin: { y: 0.65 } });
         }
 
-        // â”€â”€ NOTES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── NOTES ───────────────────────────────────────────────
         const notes = {
-            1: "ðŸ˜‚ Teri hassi â€” kamre mein aa jao toh sab ka mood ban jaata hai.",
-            2: "ðŸ’ª Teri mehnat â€” jo target set karta hai, usse poora karta hai.",
-            3: "ðŸ¤ Sachchi dosti â€” sath hai toh mushkilein bhi aasan lagti hain.",
-            4: "ðŸ”¥ Teri energy â€” yaar, tu kabhi thakta nahi lagta!"
+            1: "😂 Teri hassi — kamre mein aa jao toh sab ka mood ban jaata hai.",
+            2: "💪 Teri mehnat — jo target set karta hai, usse poora karta hai.",
+            3: "🤝 Sachchi dosti — sath hai toh mushkilein bhi aasan lagti hain.",
+            4: "🔥 Teri energy — yaar, tu kabhi thakta nahi lagta!"
         };
         function showNote(id) {
             document.getElementById('noteDisplay').textContent = notes[id];
         }
 
-        // â”€â”€ BALLOON FART SOUND â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── BALLOON FART SOUND ───────────────────────────────────
         const fartSound = new Audio('https://www.myinstants.com/media/sounds/dry-fart.mp3');
         fartSound.volume = 0.9;
         const birthdaysound = new Audio('https://www.myinstants.com/media/sounds/happy-birthday-truck-horn.mp3');
@@ -1295,7 +1286,7 @@
             fartSound.play().catch(() => { });
         }
 
-        // â”€â”€ SOUND EFFECTS (MYINSTANTS) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── SOUND EFFECTS (MYINSTANTS) ──────────────────────────
         const photoSwipeSound = new Audio('https://www.myinstants.com/media/sounds/faaah.mp3');
         photoSwipeSound.volume = 0.85;
 
@@ -1311,20 +1302,20 @@
             fireworksSound.play().catch(() => { });
         }
 
-        // â”€â”€ GALLERY (OPTIMIZED LOCAL + CDN FALLBACK) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── GALLERY (OPTIMIZED LOCAL + CDN FALLBACK) ───────────
         const photos = [
-            { url: "photos/1000262176.jpg", cdn: "https://iili.io/CyaWAxV.md.jpg", caption: "Yeh pal â€” ekdum â¤ï¸" },
-            { url: "photos/1000262180.jpg", cdn: "https://iili.io/CyaWRWB.md.jpg", caption: "Har jagah tu alag hi lagta hai ðŸ˜Ž" },
-            { url: "photos/1000262181.jpg", cdn: "https://iili.io/CyaWGbR.md.jpg", caption: "Yeh wali yaad kabhi nahi bhoolegi ðŸ”¥" },
-            { url: "photos/1000262182.jpg", cdn: "https://iili.io/CyaW8b4.md.jpg", caption: "Legendary scene tha yaar ðŸŽ‰" },
-            { url: "photos/1000262183.jpg", cdn: "https://iili.io/CyaW5iP.md.jpg", caption: "wah kya pose hai very handsome boy ðŸ‘•sâœ¨" },
-            { url: "photos/1000262184.jpg", cdn: "https://iili.io/CyaWXsI.md.jpg", caption: "Zindagi mein aise pal chahiye ðŸ’™" },
-            { url: "photos/1000262373.jpg", cdn: "https://iili.io/CyaW0Ja.md.jpg", caption: "Unstoppable tha tu iss din ðŸš€" },
-            { url: "photos/1000262374.jpg", cdn: "https://iili.io/CyaWVxp.md.jpg", caption: "Good vibes only ðŸŒŸ" },
-            { url: "photos/1000262375.jpg", cdn: "https://iili.io/CyaWeJs.md.jpg", caption: "Yaadein bana raha hai tu ðŸ“¸" },
-            { url: "photos/1000262376.jpg", cdn: "https://iili.io/CyaWUzl.md.jpg", caption: "Ekdum mast tha yeh ðŸ’¥" },
-            { url: "photos/1000262377.jpg", cdn: "https://iili.io/CyaWvef.md.jpg", caption: "Simply epic, yaar ðŸ™Œ" },
-            { url: "photos/1000262378.jpg", cdn: "https://iili.io/CyaWgX2.md.jpg", caption: "Happy Birthday Ashfaq! ðŸŽ‚" }
+            { url: "photos/1000262176.jpg", cdn: "https://iili.io/CyaWAxV.md.jpg", caption: "Yeh pal — ekdum ❤️" },
+            { url: "photos/1000262180.jpg", cdn: "https://iili.io/CyaWRWB.md.jpg", caption: "Har jagah tu alag hi lagta hai 😎" },
+            { url: "photos/1000262181.jpg", cdn: "https://iili.io/CyaWGbR.md.jpg", caption: "Yeh wali yaad kabhi nahi bhoolegi 🔥" },
+            { url: "photos/1000262182.jpg", cdn: "https://iili.io/CyaW8b4.md.jpg", caption: "Legendary scene tha yaar 🎉" },
+            { url: "photos/1000262183.jpg", cdn: "https://iili.io/CyaW5iP.md.jpg", caption: "wah kya pose hai very handsome boy 👕s✨" },
+            { url: "photos/1000262184.jpg", cdn: "https://iili.io/CyaWXsI.md.jpg", caption: "Zindagi mein aise pal chahiye 💙" },
+            { url: "photos/1000262373.jpg", cdn: "https://iili.io/CyaW0Ja.md.jpg", caption: "Unstoppable tha tu iss din 🚀" },
+            { url: "photos/1000262374.jpg", cdn: "https://iili.io/CyaWVxp.md.jpg", caption: "Good vibes only 🌟" },
+            { url: "photos/1000262375.jpg", cdn: "https://iili.io/CyaWeJs.md.jpg", caption: "Yaadein bana raha hai tu 📸" },
+            { url: "photos/1000262376.jpg", cdn: "https://iili.io/CyaWUzl.md.jpg", caption: "Ekdum mast tha yeh 💥" },
+            { url: "photos/1000262377.jpg", cdn: "https://iili.io/CyaWvef.md.jpg", caption: "Simply epic, yaar 🙌" },
+            { url: "photos/1000262378.jpg", cdn: "https://iili.io/CyaWgX2.md.jpg", caption: "Happy Birthday Ashfaq! 🎂" }
         ];
         let idx = 0;
 
@@ -1351,7 +1342,7 @@
         function prevPhoto() { playPhotoSound(); idx = (idx - 1 + photos.length) % photos.length; updateGallery(); }
         updateGallery();
 
-        // â”€â”€ TUM JIYO HAZAARON SAAL (BAAR BAAR DIN YE AAYE) â”€â”€â”€â”€â”€â”€â”€
+        // ── TUM JIYO HAZAARON SAAL (BAAR BAAR DIN YE AAYE) ───────
         const birthdaySpecialAudio = new Audio('https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/00/51/63/0051630f-0c67-02df-4a51-0e93ea55e922/mzaf_1906037364965549989.plus.aac.p.m4a');
         birthdaySpecialAudio.volume = 1.0;
 
@@ -1362,19 +1353,19 @@
         };
 
         const lyricsTimeline = [
-            { time: 0.0, text: "âœ¨ <strong>Pyare Bhai Ashfaq,</strong>" },
-            { time: 1.0, text: "ðŸŽ¶ <strong>à¤¬à¤¾à¤° à¤¬à¤¾à¤° à¤¦à¤¿à¤¨ à¤¯à¥‡ à¤†à¤¯à¥‡, à¤¬à¤¾à¤° à¤¬à¤¾à¤° à¤¦à¤¿à¤² à¤¯à¥‡ à¤—à¤¾à¤¯à¥‡...</strong>" },
-            { time: 4.8, text: "ðŸŽ‚ <strong>à¤¤à¥‚ à¤œà¤¿à¤¯à¥‡ à¤¹à¤œà¤¼à¤¾à¤°à¥‹à¤‚ à¤¸à¤¾à¤², à¤¯à¥‡ à¤®à¥‡à¤°à¥€ à¤¹à¥ˆ à¤†à¤°à¤œà¤¼à¥‚...</strong>" },
-            { time: 8.5, text: "ðŸ’– <strong>Happy Birthday to you! Happy Birthday to you!</strong>" },
-            { time: 12.0, text: "ðŸŽ‰ <strong>Happy Birthday to you, Ashfaq! Happy Birthday to you!</strong> ðŸŽ‰" },
-            { time: 16.0, text: "ðŸŒŸ à¤¬à¥‡à¤•à¤¼à¤°à¤¾à¤° à¤¹à¥‹à¤•à¥‡ à¤¦à¤¾à¤®à¤¨, à¤¥à¤¾à¤® à¤²à¥‚à¤ à¤®à¥ˆà¤‚ à¤•à¤¿à¤¸à¤•à¤¾..." },
-            { time: 19.8, text: "ðŸŒ¹ à¤à¥à¤• à¤—à¤¯à¤¾ à¤œà¤¹à¤¾à¤ à¤­à¥€ à¤¸à¤°, à¤šà¥‚à¤® à¤²à¥‚à¤ à¤®à¥ˆà¤‚ à¤•à¤¿à¤¸à¤•à¥‹..." },
-            { time: 23.5, text: "âœ¨ à¤¸à¤œà¤•à¥‡ à¤–à¥à¤¶à¤¿à¤¯à¥‹à¤‚ à¤•à¥€ à¤®à¤¹à¤«à¤¼à¤¿à¤², à¤¹à¤° à¤¦à¥à¤† à¤¹à¥ˆ à¤¤à¥‡à¤°à¥‡ à¤¨à¤¾à¤®..." },
-            { time: 27.2, text: "ðŸŽ¶ <strong>à¤¬à¤¾à¤° à¤¬à¤¾à¤° à¤¦à¤¿à¤¨ à¤¯à¥‡ à¤†à¤¯à¥‡, à¤¬à¤¾à¤° à¤¬à¤¾à¤° à¤¦à¤¿à¤² à¤¯à¥‡ à¤—à¤¾à¤¯à¥‡...</strong>" },
-            { time: 31.0, text: "ðŸŽ‚ <strong>à¤¤à¥à¤® à¤œà¤¿à¤¯à¥‹ à¤¹à¤œà¤¼à¤¾à¤°à¥‹à¤‚ à¤¸à¤¾à¤², à¤¯à¥‡ à¤®à¥‡à¤°à¥€ à¤¹à¥ˆ à¤†à¤°à¤œà¤¼à¥‚!</strong>" },
-            { time: 34.5, text: "ðŸ’« <strong>à¤¸à¤¾à¤² à¤•à¥‡ à¤¦à¤¿à¤¨ à¤¹à¥‹à¤‚ à¤ªà¤šà¤¾à¤¸ à¤¹à¤œà¤¼à¤¾à¤°...!</strong>" },
-            { time: 38.0, text: "ðŸ¤² <strong>Dua hai rab se tu hamesha khush rahe aur kamyabi tere kadam choome!</strong>" },
-            { time: 41.5, text: "ðŸ’™ <em>Dil se bahut saare pyaar aur duao ke sath â€” tera bhai</em> ðŸ’™" }
+            { time: 0.0, text: "✨ <strong>Pyare Bhai Ashfaq,</strong>" },
+            { time: 1.0, text: "🎶 <strong>बार बार दिन ये आये, बार बार दिल ये गाये...</strong>" },
+            { time: 4.8, text: "🎂 <strong>तू जिये हज़ारों साल, ये मेरी है आरज़ू...</strong>" },
+            { time: 8.5, text: "💖 <strong>Happy Birthday to you! Happy Birthday to you!</strong>" },
+            { time: 12.0, text: "🎉 <strong>Happy Birthday to you, Ashfaq! Happy Birthday to you!</strong> 🎉" },
+            { time: 16.0, text: "🌟 बेक़रार होके दामन, थाम लूँ मैं किसका..." },
+            { time: 19.8, text: "🌹 झुक गया जहाँ भी सर, चूम लूँ मैं किसको..." },
+            { time: 23.5, text: "✨ सजके खुशियों की महफ़िल, हर दुआ है तेरे नाम..." },
+            { time: 27.2, text: "🎶 <strong>बार बार दिन ये आये, बार बार दिल ये गाये...</strong>" },
+            { time: 31.0, text: "🎂 <strong>तुम जियो हज़ारों साल, ये मेरी है आरज़ू!</strong>" },
+            { time: 34.5, text: "💫 <strong>साल के दिन हों पचास हज़ार...!</strong>" },
+            { time: 38.0, text: "🤲 <strong>Dua hai rab se tu hamesha khush rahe aur kamyabi tere kadam choome!</strong>" },
+            { time: 41.5, text: "💙 <em>Dil se bahut saare pyaar aur duao ke sath — tera bhai</em> 💙" }
         ];
 
         let lyricsInterval = null;
@@ -1431,7 +1422,7 @@
             }, 60);
         }
 
-        // â”€â”€ LIGHT UP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── LIGHT UP ────────────────────────────────────────────
         function prepareLightStep() {
             document.body.classList.add('dark-mode');
             document.getElementById('mainContainer').classList.add('dark-card');
@@ -1473,7 +1464,7 @@
             nextStep(7);
         }
 
-        // â”€â”€ FINALE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── FINALE ──────────────────────────────────────────────
         function openGift() {
             document.querySelector('.gift-box').style.display = 'none';
             document.getElementById('finalCelebration').style.display = 'block';
@@ -1489,188 +1480,117 @@
             })();
         }
 
-        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-        // ðŸ›¡ï¸ ULTRA-STRONG ANTI-SCREENSHOT DRM (Android + iPhone + PC)
-        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-
+        // == ULTRA-STRONG ANTI-SCREENSHOT DRM (Android + iPhone + PC) ==
         (function() {
             'use strict';
-            const shield = document.getElementById('drm-shield');
+            var shield = document.getElementById('drm-shield');
 
-            // â”€â”€ 1. BLOCK RIGHT-CLICK / LONG-PRESS MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // 1. Block right-click / long-press
             document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
+                e.preventDefault(); e.stopPropagation(); return false;
             }, { capture: true, passive: false });
 
-            // â”€â”€ 2. BLOCK ALL KEYBOARD SHORTCUTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // 2. Block keyboard shortcuts
             document.addEventListener('keydown', function(e) {
-                const k = e.key || '';
-                const kc = e.keyCode || 0;
-
-                // PrintScreen
-                if (k === 'PrintScreen' || kc === 44) {
-                    e.preventDefault();
-                    try { navigator.clipboard.writeText(''); } catch(x) {}
-                    flashShield();
-                    return false;
-                }
-                // F12 DevTools
+                var k = e.key || '', kc = e.keyCode || 0;
+                if (k === 'PrintScreen' || kc === 44) { e.preventDefault(); try { navigator.clipboard.writeText(''); } catch(x) {} flashShield(); return false; }
                 if (kc === 123) { e.preventDefault(); return false; }
-                // Ctrl+Shift combos (I/J/C/K)
                 if (e.ctrlKey && e.shiftKey && /^[ijckIJCK]$/.test(k)) { e.preventDefault(); return false; }
-                // Ctrl combos (U/S/P/A/C/H)
                 if (e.ctrlKey && !e.shiftKey && /^[uspack]$/i.test(k)) { e.preventDefault(); return false; }
-                // Meta/Win + Shift + S (Windows Snip & Sketch)
                 if (e.metaKey && e.shiftKey && /^[sS]$/.test(k)) { e.preventDefault(); flashShield(); return false; }
-                // Meta/Win + PrintScreen
                 if (e.metaKey && (k === 'PrintScreen' || kc === 44)) { e.preventDefault(); flashShield(); return false; }
             }, { capture: true, passive: false });
 
-            // â”€â”€ 3. BLOCK DRAG (image save on mobile/desktop) â”€â”€â”€â”€â”€
+            // 3. Block drag
             ['dragstart','drag','dragend','dragenter','dragover','dragleave','drop'].forEach(function(evt) {
                 document.addEventListener(evt, function(e) { e.preventDefault(); return false; }, { capture: true, passive: false });
             });
 
-            // â”€â”€ 4. BLOCK COPY/CUT CLIPBOARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            document.addEventListener('copy', function(e) {
-                e.preventDefault();
-                try { e.clipboardData.setData('text/plain', 'ðŸš« Protected'); } catch(x) {}
-                return false;
-            }, true);
+            // 4. Block copy/cut
+            document.addEventListener('copy', function(e) { e.preventDefault(); try { e.clipboardData.setData('text/plain', 'Protected'); } catch(x) {} return false; }, true);
             document.addEventListener('cut', function(e) { e.preventDefault(); return false; }, true);
 
-            // â”€â”€ 5. iOS/ANDROID TOUCH PROTECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            // Block long-press image save on iOS Safari & Android Chrome
+            // 5. iOS/Android touch protection
             document.addEventListener('touchstart', function(e) {
-                if (e.target.tagName === 'IMG' || e.target.tagName === 'CANVAS') {
-                    e.preventDefault();
-                }
+                if (e.target.tagName === 'IMG' || e.target.tagName === 'CANVAS') { e.preventDefault(); }
             }, { passive: false });
-
-            // Block iOS callout menu (Save Image / Copy)
             document.addEventListener('touchend', function(e) {
-                if (e.target.tagName === 'IMG') {
-                    e.preventDefault();
-                }
+                if (e.target.tagName === 'IMG') { e.preventDefault(); }
             }, { passive: false });
+            document.addEventListener('webkitmouseforcechanged', function(e) { e.preventDefault(); }, true);
 
-            // Prevent iOS 3D Touch / Haptic Peek on images
-            document.addEventListener('webkitmouseforcechanged', function(e) {
-                e.preventDefault();
-            }, true);
+            // 6. Visibility change (tab/app switch)
+            document.addEventListener('visibilitychange', function() { if (document.hidden) flashShield(); });
 
-            // â”€â”€ 6. VISIBILITY CHANGE (tab switch / app switch) â”€â”€â”€
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    flashShield();
-                }
-            });
+            // 7. Window blur
+            window.addEventListener('blur', function() { flashShield(); });
 
-            // â”€â”€ 7. WINDOW BLUR (Snipping Tool / screenshot app) â”€â”€
-            window.addEventListener('blur', function() {
-                flashShield();
-            });
+            // 8. Page hide (Android screenshot, iOS multitask)
+            window.addEventListener('pagehide', function() { flashShield(); });
 
-            // â”€â”€ 8. PAGE HIDE (Android screenshot, iOS multitask) â”€
-            window.addEventListener('pagehide', function() {
-                flashShield();
-            });
-
-            // â”€â”€ 9. WINDOW RESIZE (Android split screen screenshot)
-            let lastW = window.innerWidth, lastH = window.innerHeight;
+            // 9. Resize detection (split screen screenshot)
+            var lastW = window.innerWidth, lastH = window.innerHeight;
             window.addEventListener('resize', function() {
-                const dw = Math.abs(window.innerWidth - lastW);
-                const dh = Math.abs(window.innerHeight - lastH);
-                // Sudden large resize = possible screenshot UI
-                if (dw > 100 || dh > 100) {
-                    flashShield();
-                }
-                lastW = window.innerWidth;
-                lastH = window.innerHeight;
+                if (Math.abs(window.innerWidth - lastW) > 100 || Math.abs(window.innerHeight - lastH) > 100) flashShield();
+                lastW = window.innerWidth; lastH = window.innerHeight;
             });
 
-            // â”€â”€ 10. DEVTOOLS SIZE DETECTION (desktop) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            let dtOpen = false;
+            // 10. DevTools size detection
+            var dtOpen = false;
             function checkDT() {
-                const wd = window.outerWidth - window.innerWidth > 160;
-                const hd = window.outerHeight - window.innerHeight > 160;
-                if (wd || hd) {
-                    if (!dtOpen) {
-                        dtOpen = true;
-                        nukeContent('ðŸš« DevTools Detected â€” Content Hidden ðŸš«');
-                    }
+                if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+                    if (!dtOpen) { dtOpen = true; nukeContent('DevTools Detected - Content Hidden'); }
                 } else { dtOpen = false; }
             }
             setInterval(checkDT, 800);
 
-            // â”€â”€ 11. CONSOLE DEBUGGER TRAP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // 11. Console debugger trap
             (function() {
-                const el = new Image();
-                Object.defineProperty(el, 'id', { get: function() { nukeContent('ðŸš« Inspection Not Allowed ðŸš«'); } });
+                var el = new Image();
+                Object.defineProperty(el, 'id', { get: function() { nukeContent('Inspection Not Allowed'); } });
                 setInterval(function() { console.log('%c', el); console.clear(); }, 2000);
             })();
 
-            // â”€â”€ 12. BLOCK PRINT (CSS + JS) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            const ps = document.createElement('style');
-            ps.textContent = '@media print{body{display:none!important}html::after{content:"ðŸš« Printing Blocked";display:flex;justify-content:center;align-items:center;height:100vh;font-size:3rem;font-weight:900;color:#ff4444;background:#000}}';
+            // 12. Block print
+            var ps = document.createElement('style');
+            ps.textContent = '@media print{body{display:none!important}html::after{content:"Printing Blocked";display:flex;justify-content:center;align-items:center;height:100vh;font-size:3rem;font-weight:900;color:#ff4444;background:#000}}';
             document.head.appendChild(ps);
             window.addEventListener('beforeprint', function() { document.body.style.display = 'none'; });
             window.addEventListener('afterprint', function() { document.body.style.display = ''; });
 
-            // â”€â”€ 13. BLOCK SCREEN CAPTURE API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // 13. Block screen capture API
             if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
-                navigator.mediaDevices.getDisplayMedia = function() {
-                    flashShield();
-                    return Promise.reject(new Error('Screen capture blocked'));
-                };
+                navigator.mediaDevices.getDisplayMedia = function() { flashShield(); return Promise.reject(new Error('Blocked')); };
             }
 
-            // â”€â”€ 14. SCREEN RECORDING DETECTION (experimental) â”€â”€â”€â”€
-            // Uses permissions API to detect screen capture permission
+            // 14. Screen capture permission detection
             if (navigator.permissions && navigator.permissions.query) {
                 try {
-                    navigator.permissions.query({ name: 'display-capture' }).then(function(status) {
-                        status.addEventListener('change', function() {
-                            if (status.state === 'granted') {
-                                flashShield();
-                            }
-                        });
+                    navigator.permissions.query({ name: 'display-capture' }).then(function(s) {
+                        s.addEventListener('change', function() { if (s.state === 'granted') flashShield(); });
                     }).catch(function(){});
                 } catch(e) {}
             }
 
-            // â”€â”€ 15. CSS CONTENT PROTECTION LAYER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            // Add invisible overlay that poisons screenshots with warning
-            const overlay = document.createElement('div');
-            overlay.id = 'drm-watermark';
+            // 15. Content protection overlay
+            var overlay = document.createElement('div');
             overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:999998;pointer-events:none;opacity:0;background:transparent;';
             document.body.appendChild(overlay);
 
-            // On shield activation, make watermark briefly visible
             function flashShield() {
                 if (!shield) return;
                 shield.classList.add('active');
-                // Poison clipboard
                 try { navigator.clipboard.writeText(''); } catch(e) {}
-                // Show watermark overlay too
-                if (overlay) overlay.style.opacity = '1';
-                overlay.style.background = 'rgba(0,0,0,0.95)';
+                if (overlay) { overlay.style.opacity = '1'; overlay.style.background = 'rgba(0,0,0,0.95)'; }
                 setTimeout(function() {
                     shield.classList.remove('active');
-                    if (overlay) {
-                        overlay.style.opacity = '0';
-                        overlay.style.background = 'transparent';
-                    }
+                    if (overlay) { overlay.style.opacity = '0'; overlay.style.background = 'transparent'; }
                 }, 3000);
             }
 
             function nukeContent(msg) {
                 document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#ff4444;font-size:1.5rem;font-weight:900;font-family:sans-serif;text-align:center;padding:20px;">' + msg + '</div>';
             }
-
-            console.log('%cðŸ›¡ï¸ DRM Protection Active (15 Layers)', 'color:#0f0;font-size:14px;font-weight:bold;');
         })();
 
     </script>
