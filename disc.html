@@ -35,8 +35,10 @@
         #drm-shield {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             background: #000;
             z-index: 999999;
             justify-content: center;
@@ -47,7 +49,10 @@
             text-align: center;
             font-family: sans-serif;
         }
-        #drm-shield.active { display: flex; }
+
+        #drm-shield.active {
+            display: flex;
+        }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -693,7 +698,10 @@
             { pic1: "https://i.postimg.cc/Mnw2M2sH/b3.jpg", pic2: "https://i.postimg.cc/ZWmtBtfy/g3.png" },
             { pic1: "https://i.postimg.cc/56LW2NmY/b4.jpg", pic2: "https://i.postimg.cc/21YRbRH3/g4.png" },
             { pic1: "https://i.postimg.cc/N5mvjfx2/b5.jpg", pic2: "https://i.postimg.cc/Bj39L9hv/g5.png" },
-            { pic1: "https://i.postimg.cc/mtCWg2St/b6.jpg", pic2: "https://i.postimg.cc/mtCWg2SM/g6.png" }
+            { pic1: "https://i.postimg.cc/mtCWg2St/b6.jpg", pic2: "https://i.postimg.cc/mtCWg2SM/g6.png" },
+            { pic1: "https://i.postimg.cc/LXPjDd60/b7.jpg", pic2: "https://i.postimg.cc/63ZCcsps/g7.png" },
+            { pic1: "https://i.postimg.cc/Twbn08YN/b8.jpg", pic2: "https://i.postimg.cc/50z8gcNZ/g8.png" },
+            { pic1: "https://i.postimg.cc/jjmzyqK1/b9.jpg", pic2: "https://i.postimg.cc/vBn5hRHC/g9.png" }
         ];
 
         let currentIndex = 0;
@@ -721,22 +729,22 @@
         // 🛡️ ULTRA-STRONG ANTI-SCREENSHOT DRM (Android + iPhone + PC)
         // ══════════════════════════════════════════════════════════
 
-        (function() {
+        (function () {
             'use strict';
             const shield = document.getElementById('drm-shield');
 
             // ── 1. BLOCK RIGHT-CLICK / LONG-PRESS MENU ──────────
-            document.addEventListener('contextmenu', function(e) {
+            document.addEventListener('contextmenu', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 return false;
             }, { capture: true, passive: false });
 
             // ── 2. BLOCK ALL KEYBOARD SHORTCUTS ──────────────────
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 const k = e.key || '';
                 const kc = e.keyCode || 0;
-                if (k === 'PrintScreen' || kc === 44) { e.preventDefault(); try { navigator.clipboard.writeText(''); } catch(x) {} flashShield(); return false; }
+                if (k === 'PrintScreen' || kc === 44) { e.preventDefault(); try { navigator.clipboard.writeText(''); } catch (x) { } flashShield(); return false; }
                 if (kc === 123) { e.preventDefault(); return false; }
                 if (e.ctrlKey && e.shiftKey && /^[ijckIJCK]$/.test(k)) { e.preventDefault(); return false; }
                 if (e.ctrlKey && !e.shiftKey && /^[uspack]$/i.test(k)) { e.preventDefault(); return false; }
@@ -745,35 +753,35 @@
             }, { capture: true, passive: false });
 
             // ── 3. BLOCK DRAG ────────────────────────────────────
-            ['dragstart','drag','dragend','dragenter','dragover','dragleave','drop'].forEach(function(evt) {
-                document.addEventListener(evt, function(e) { e.preventDefault(); return false; }, { capture: true, passive: false });
+            ['dragstart', 'drag', 'dragend', 'dragenter', 'dragover', 'dragleave', 'drop'].forEach(function (evt) {
+                document.addEventListener(evt, function (e) { e.preventDefault(); return false; }, { capture: true, passive: false });
             });
 
             // ── 4. BLOCK COPY/CUT ────────────────────────────────
-            document.addEventListener('copy', function(e) { e.preventDefault(); try { e.clipboardData.setData('text/plain', '🚫 Protected'); } catch(x) {} return false; }, true);
-            document.addEventListener('cut', function(e) { e.preventDefault(); return false; }, true);
+            document.addEventListener('copy', function (e) { e.preventDefault(); try { e.clipboardData.setData('text/plain', '🚫 Protected'); } catch (x) { } return false; }, true);
+            document.addEventListener('cut', function (e) { e.preventDefault(); return false; }, true);
 
             // ── 5. iOS/ANDROID TOUCH PROTECTION ──────────────────
-            document.addEventListener('touchstart', function(e) {
+            document.addEventListener('touchstart', function (e) {
                 if (e.target.tagName === 'IMG' || e.target.tagName === 'CANVAS') { e.preventDefault(); }
             }, { passive: false });
-            document.addEventListener('touchend', function(e) {
+            document.addEventListener('touchend', function (e) {
                 if (e.target.tagName === 'IMG') { e.preventDefault(); }
             }, { passive: false });
-            document.addEventListener('webkitmouseforcechanged', function(e) { e.preventDefault(); }, true);
+            document.addEventListener('webkitmouseforcechanged', function (e) { e.preventDefault(); }, true);
 
             // ── 6. VISIBILITY CHANGE ─────────────────────────────
-            document.addEventListener('visibilitychange', function() { if (document.hidden) flashShield(); });
+            document.addEventListener('visibilitychange', function () { if (document.hidden) flashShield(); });
 
             // ── 7. WINDOW BLUR ───────────────────────────────────
-            window.addEventListener('blur', function() { flashShield(); });
+            window.addEventListener('blur', function () { flashShield(); });
 
             // ── 8. PAGE HIDE (Android/iOS) ───────────────────────
-            window.addEventListener('pagehide', function() { flashShield(); });
+            window.addEventListener('pagehide', function () { flashShield(); });
 
             // ── 9. WINDOW RESIZE (split screen screenshot) ───────
             let lastW = window.innerWidth, lastH = window.innerHeight;
-            window.addEventListener('resize', function() {
+            window.addEventListener('resize', function () {
                 if (Math.abs(window.innerWidth - lastW) > 100 || Math.abs(window.innerHeight - lastH) > 100) flashShield();
                 lastW = window.innerWidth; lastH = window.innerHeight;
             });
@@ -788,31 +796,31 @@
             setInterval(checkDT, 800);
 
             // ── 11. CONSOLE DEBUGGER TRAP ────────────────────────
-            (function() {
+            (function () {
                 const el = new Image();
-                Object.defineProperty(el, 'id', { get: function() { nukeContent('🚫 Inspection Not Allowed 🚫'); } });
-                setInterval(function() { console.log('%c', el); console.clear(); }, 2000);
+                Object.defineProperty(el, 'id', { get: function () { nukeContent('🚫 Inspection Not Allowed 🚫'); } });
+                setInterval(function () { console.log('%c', el); console.clear(); }, 2000);
             })();
 
             // ── 12. BLOCK PRINT ──────────────────────────────────
             const ps = document.createElement('style');
             ps.textContent = '@media print{body{display:none!important}html::after{content:"🚫 Printing Blocked";display:flex;justify-content:center;align-items:center;height:100vh;font-size:3rem;font-weight:900;color:#ff4444;background:#000}}';
             document.head.appendChild(ps);
-            window.addEventListener('beforeprint', function() { document.body.style.display = 'none'; });
-            window.addEventListener('afterprint', function() { document.body.style.display = ''; });
+            window.addEventListener('beforeprint', function () { document.body.style.display = 'none'; });
+            window.addEventListener('afterprint', function () { document.body.style.display = ''; });
 
             // ── 13. BLOCK SCREEN CAPTURE API ─────────────────────
             if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
-                navigator.mediaDevices.getDisplayMedia = function() { flashShield(); return Promise.reject(new Error('Blocked')); };
+                navigator.mediaDevices.getDisplayMedia = function () { flashShield(); return Promise.reject(new Error('Blocked')); };
             }
 
             // ── 14. SCREEN RECORDING DETECTION ──────────────────
             if (navigator.permissions && navigator.permissions.query) {
                 try {
-                    navigator.permissions.query({ name: 'display-capture' }).then(function(s) {
-                        s.addEventListener('change', function() { if (s.state === 'granted') flashShield(); });
-                    }).catch(function(){});
-                } catch(e) {}
+                    navigator.permissions.query({ name: 'display-capture' }).then(function (s) {
+                        s.addEventListener('change', function () { if (s.state === 'granted') flashShield(); });
+                    }).catch(function () { });
+                } catch (e) { }
             }
 
             // ── 15. CSS CONTENT PROTECTION OVERLAY ──────────────
@@ -823,9 +831,9 @@
             function flashShield() {
                 if (!shield) return;
                 shield.classList.add('active');
-                try { navigator.clipboard.writeText(''); } catch(e) {}
+                try { navigator.clipboard.writeText(''); } catch (e) { }
                 if (overlay) { overlay.style.opacity = '1'; overlay.style.background = 'rgba(0,0,0,0.95)'; }
-                setTimeout(function() {
+                setTimeout(function () {
                     shield.classList.remove('active');
                     if (overlay) { overlay.style.opacity = '0'; overlay.style.background = 'transparent'; }
                 }, 3000);
