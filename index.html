@@ -23,7 +23,40 @@
             margin: 0;
             padding: 0;
             user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none;
         }
+
+        /* Anti-screenshot: block image dragging & saving */
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+
+        /* DRM overlay when page loses focus (screenshot attempt detected) */
+        #drm-shield {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: #000;
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+            color: #ff4444;
+            font-size: 2rem;
+            font-weight: 900;
+            text-align: center;
+            font-family: 'Nunito', sans-serif;
+        }
+        #drm-shield.active { display: flex; }
 
         body {
             font-family: 'Nunito', sans-serif;
@@ -782,6 +815,14 @@
 
 <body>
 
+    <!-- 🛡️ DRM SHIELD OVERLAY (shown on screenshot/screen capture attempt) -->
+    <div id="drm-shield">
+        <div>
+            🚫 SCREENSHOT BLOCKED 🚫<br>
+            <span style="font-size:1rem;color:#aaa;">This content is protected</span>
+        </div>
+    </div>
+
     <!-- Hidden SoundCloud Player -->
     <iframe id="sc-iframe"
         src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/official_ajay_vashisth/sumit-goswami-birthday-khatri-new-haryanvi-songs-haryanavi&auto_play=true&buying=false&liking=false&download=false&sharing=false&show_artwork=false&show_comments=false&show_playcount=false&show_user=false&hide_related=true&visual=false"
@@ -1447,7 +1488,189 @@
                 if (Date.now() < end) requestAnimationFrame(frame);
             })();
         }
+
+        // ══════════════════════════════════════════════════════════
+        // 🛡️ STRONG ANTI-SCREENSHOT / DRM PROTECTION SYSTEM 🛡️
+        // ══════════════════════════════════════════════════════════
+
+        (function() {
+            const shield = document.getElementById('drm-shield');
+
+            // ── 1. BLOCK RIGHT-CLICK (context menu) ──────────────
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, true);
+
+            // ── 2. BLOCK KEYBOARD SHORTCUTS ──────────────────────
+            document.addEventListener('keydown', function(e) {
+                // Block PrintScreen
+                if (e.key === 'PrintScreen' || e.keyCode === 44) {
+                    e.preventDefault();
+                    navigator.clipboard.writeText('').catch(()=>{});
+                    flashShield();
+                    return false;
+                }
+
+                // Block F12 (DevTools)
+                if (e.key === 'F12' || e.keyCode === 123) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element picker)
+                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Block Ctrl+U (View Source)
+                if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Block Ctrl+S (Save Page)
+                if (e.ctrlKey && (e.key === 'S' || e.key === 's')) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Block Ctrl+P (Print / Print to PDF)
+                if (e.ctrlKey && (e.key === 'P' || e.key === 'p')) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Block Ctrl+A (Select All)
+                if (e.ctrlKey && (e.key === 'A' || e.key === 'a')) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Block Ctrl+C (Copy)
+                if (e.ctrlKey && (e.key === 'C' || e.key === 'c') && !e.shiftKey) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Block Windows+PrintScreen / Windows+Shift+S (Windows Snip)
+                if (e.metaKey && (e.key === 'PrintScreen' || e.keyCode === 44)) {
+                    e.preventDefault();
+                    flashShield();
+                    return false;
+                }
+                if (e.metaKey && e.shiftKey && (e.key === 'S' || e.key === 's')) {
+                    e.preventDefault();
+                    flashShield();
+                    return false;
+                }
+            }, true);
+
+            // ── 3. BLOCK ALL DRAG EVENTS ─────────────────────────
+            ['dragstart', 'drag', 'dragend', 'dragenter', 'dragover', 'dragleave', 'drop'].forEach(function(evt) {
+                document.addEventListener(evt, function(e) {
+                    e.preventDefault();
+                    return false;
+                }, true);
+            });
+
+            // ── 4. BLOCK COPY/CUT TO CLIPBOARD ──────────────────
+            document.addEventListener('copy', function(e) {
+                e.preventDefault();
+                if (e.clipboardData) {
+                    e.clipboardData.setData('text/plain', '🚫 Content Protected');
+                }
+                return false;
+            }, true);
+            document.addEventListener('cut', function(e) {
+                e.preventDefault();
+                return false;
+            }, true);
+
+            // ── 5. VISIBILITY CHANGE DETECTION ───────────────────
+            // (Detects when user switches tabs/apps for screenshot tools)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    flashShield();
+                }
+            });
+
+            // ── 6. WINDOW BLUR DETECTION ─────────────────────────
+            // (Catches focus loss from screenshot tools / Snipping Tool)
+            window.addEventListener('blur', function() {
+                flashShield();
+            });
+
+            // ── 7. DEVTOOLS DETECTION (size-based) ───────────────
+            let devtoolsOpen = false;
+            const threshold = 160;
+            function checkDevTools() {
+                const widthDiff = window.outerWidth - window.innerWidth > threshold;
+                const heightDiff = window.outerHeight - window.innerHeight > threshold;
+                if (widthDiff || heightDiff) {
+                    if (!devtoolsOpen) {
+                        devtoolsOpen = true;
+                        document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#ff4444;font-size:2rem;font-weight:900;font-family:sans-serif;text-align:center;padding:20px;">🚫 DevTools Detected — Content Hidden 🚫</div>';
+                    }
+                } else {
+                    devtoolsOpen = false;
+                }
+            }
+            setInterval(checkDevTools, 1000);
+
+            // ── 8. CONSOLE DEBUGGER TRAP ─────────────────────────
+            (function antiDebug() {
+                const el = new Image();
+                Object.defineProperty(el, 'id', {
+                    get: function() {
+                        document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#ff4444;font-size:2rem;font-weight:900;font-family:sans-serif;text-align:center;padding:20px;">🚫 Inspection Not Allowed 🚫</div>';
+                    }
+                });
+                setInterval(function() {
+                    console.log('%c', el);
+                    console.clear();
+                }, 2000);
+            })();
+
+            // ── 9. FLASH SHIELD FUNCTION ─────────────────────────
+            function flashShield() {
+                if (!shield) return;
+                shield.classList.add('active');
+                // Clear clipboard on screenshot attempt
+                try { navigator.clipboard.writeText(''); } catch(e) {}
+                setTimeout(function() {
+                    shield.classList.remove('active');
+                }, 2500);
+            }
+
+            // ── 10. BLOCK PRINT (CSS + JS) ──────────────────────
+            const printStyle = document.createElement('style');
+            printStyle.textContent = '@media print { body { display: none !important; } html::after { content: "🚫 Printing Not Allowed"; display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3rem; font-weight: 900; color: #ff4444; background: #000; } }';
+            document.head.appendChild(printStyle);
+
+            window.addEventListener('beforeprint', function() {
+                document.body.style.display = 'none';
+            });
+            window.addEventListener('afterprint', function() {
+                document.body.style.display = '';
+            });
+
+            // ── 11. BLOCK SCREEN CAPTURE API ─────────────────────
+            if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+                const orig = navigator.mediaDevices.getDisplayMedia;
+                navigator.mediaDevices.getDisplayMedia = function() {
+                    flashShield();
+                    return Promise.reject(new Error('Screen capture blocked'));
+                };
+            }
+
+            console.log('%c🛡️ DRM Protection Active', 'color:#0f0;font-size:14px;font-weight:bold;');
+        })();
+
     </script>
+
 </body>
 
 </html>
