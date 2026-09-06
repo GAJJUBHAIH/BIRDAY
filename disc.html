@@ -596,6 +596,11 @@
             </div>
         </div>
     </div>
+    <!-- AUDIO ELEMENTS -->
+    <audio id="sirenAudio" loop>
+        <source src="https://www.myinstants.com/media/sounds/999-social-credit-siren.mp3" type="audio/mpeg">
+    </audio>
+    <iframe id="sc-iframe" src="" style="position:fixed; top:-200px; left:0; width:1px; height:1px; opacity:0; pointer-events:none; border:none;" allow="autoplay"></iframe>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
@@ -607,7 +612,26 @@
         const bgContainer = document.getElementById('bg-hearts-container');
 
         // --- 1. GATEWAY ROUTING LOGIC ---
+        const sirenAudio = document.getElementById('sirenAudio');
+        const scIframe = document.getElementById('sc-iframe');
+
+        // Play siren on any first interaction (to bypass browser autoplay blocking)
+        let sirenPlayed = false;
+        function playSiren() {
+            if (!sirenPlayed && ageGate.style.display !== 'none') {
+                sirenAudio.volume = 0.6;
+                sirenAudio.play().catch(e => console.log('Autoplay blocked'));
+                sirenPlayed = true;
+            }
+        }
+        document.body.addEventListener('click', playSiren, { once: true });
+        document.body.addEventListener('touchstart', playSiren, { once: true });
+        document.body.addEventListener('keydown', playSiren, { once: true });
+        // Attempt to play immediately (may fail)
+        setTimeout(playSiren, 500);
+
         document.getElementById('enterBtn').addEventListener('click', () => {
+            sirenAudio.pause(); // Stop siren
             const enteredCode = document.getElementById('secretCode').value;
             ageGate.style.display = 'none'; // Hide the gate
 
@@ -615,6 +639,8 @@
                 // Secret unlocked! Show Valentine's Frame
                 valentinePortal.style.display = 'flex';
                 startFloatingHearts();
+                // Play SoundCloud song automatically
+                scIframe.src = "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-241389379/tera-mera-afsana-remix-feat-talwiinder-anuv-jain-karan-aujla&auto_play=true&visual=false";
             } else {
                 // Wrong or no code! Dump them into the adult decoy site
                 adultPortal.style.display = 'flex';
@@ -622,6 +648,7 @@
         });
 
         document.getElementById('exitBtn').addEventListener('click', () => {
+            sirenAudio.pause(); // Stop siren
             window.location.href = 'index.html';
         });
         // =========================================
